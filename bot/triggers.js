@@ -1,4 +1,11 @@
 var triggers = {
+
+    hi: [
+        'Hi Bender',
+        'Hey Bender',
+        'Yo Bender,'
+    ],
+
     quotes: [
         '!quote',
         'say something',

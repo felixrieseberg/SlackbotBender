@@ -1,11 +1,11 @@
 var express = require('express'),
     router = express.Router(),
-    hook = require('slackbot'),
+    hook = require('slackhook'),
     util = require('util'),
 
     helpers = require('./helpers'),
     triggers = require('./triggers'),
-    
+
     quotes = require('../integrations/quotes'),
     wolframalpha = require('../integrations/wolframalpha'),
     timezones = require('../integrations/timezones');
@@ -18,7 +18,8 @@ function respond(res, text) {
 }
 
 router.post('/', function(req, res){
-    var reqText = (req.body.text) ? req.body.text : null;
+    var reqText = (req.body.text) ? req.body.text : null,
+        reqText = _s.strRight(reqText, 'Bender, ');
 
     if (!reqText) {
         res.json({text: 'Yo, you didn\'t even ask for anything. Gimme a command!'});
