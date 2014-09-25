@@ -58,7 +58,7 @@ wolframalpha = {
     },
 
     executeQuery: function (query, callback) {
-        wolfram.query(query, function(error, result) {  
+        makeRequest(query, function(error, result) {  
             if (error) {
                 console.warn(util.inspect(error));
             }
@@ -70,7 +70,7 @@ wolframalpha = {
 
         query = _s.strRight(query, 'wolfram');
 
-        wolfram.query(query, function(error, result) {  
+        makeRequest(query, function(error, result) {  
             var errorText;
 
             if (error) {

@@ -26,8 +26,6 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-wolframalpha.makeRequest('pi');
-
 // error handlers
 
 // development error handler
