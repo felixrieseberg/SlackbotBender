@@ -1,6 +1,6 @@
 var help = {
 
-    helpPayload: {
+    helpPayload: [{
         'fallback': 'Seriously dude, if you want to see the command list, do it on a client that supports fancy and long messages.',
         'color': 'good',
         'fields': [
@@ -13,7 +13,7 @@ var help = {
                 'short': false 
             }
         ]
-    },
+    }],
 
     sendHelp: function (callback) {
         return callback('Okay, okay, I\'ll tell you how to use this thing.', this.helpPayload);
