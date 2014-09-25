@@ -7,6 +7,7 @@ var triggers = {
     ],
 
     quotes: [
+        'quote',
         '!quote',
         'say something',
         'what\'s up',

@@ -20,7 +20,10 @@ function respond(res, text) {
 
 router.post('/', function(req, res){
     var reqText = (req.body.text) ? req.body.text : null,
+        reqText = _s.clean(reqText);
         reqText = _s.strRight(reqText, 'Bender, ');
+
+    console.log('Request received: ' + reqText);
 
     if (!reqText) {
         res.json({text: 'Yo, you didn\'t even ask for anything. Gimme a command!'});
@@ -41,6 +44,7 @@ router.post('/', function(req, res){
         wolframalpha.getResponse(reqText, respond.bind(this, res));
     }
 
+    respond(res, 'Yo, I have no idea what you\'re talking about.');
 
 });
 
