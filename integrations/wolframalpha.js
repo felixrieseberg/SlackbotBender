@@ -32,9 +32,9 @@ wolframalpha = {
                 } else {
                     pods = doc.childrenNamed('pod');
 
-                    _.map(pods, function(node) {
+                    pods = _.map(pods, function(node) {
                         subpods = node.childrenNamed('subpod');
-                        _.map(subpods, function(subnode) {
+                        subpods = _.map(subpods, function(subnode) {
                             return {
                                 title: subnode.attr.title,
                                 value: subnode.childNamed('plaintext').val,
