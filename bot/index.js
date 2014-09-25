@@ -40,7 +40,7 @@ router.post('/', function(req, res){
 
     // Quotes
     if (helpers.containsAny(reqText, triggers.quotes)) {
-        return res.json({text: quotes.bender()});
+        return respond(res, quotes.bender());
     }
 
     // Timezones

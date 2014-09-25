@@ -4,8 +4,6 @@ var express = require('express'),
     bodyParser = require('body-parser'),
 
     bot = require('./bot/index'),
-    wolframalpha = require('./integrations/wolframalpha'),
-
     app = express();
 
 // view engine setup
@@ -25,8 +23,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace
