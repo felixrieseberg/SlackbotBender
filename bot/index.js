@@ -26,25 +26,25 @@ router.post('/', function(req, res){
     console.log('Request received: ' + reqText);
 
     if (!reqText) {
-        res.json({text: 'Yo, you didn\'t even ask for anything. Gimme a command!'});
+        return res.json({text: 'Yo, you didn\'t even ask for anything. Gimme a command!'});
     }
     
     // Quotes
     if (helpers.containsAny(reqText, triggers.quotes)) {
-        res.json({text: quotes.bender()});
+        return res.json({text: quotes.bender()});
     }
 
     // Timezones
     if (helpers.containsAny(reqText, triggers.timezones)) {
-        timezones.getTime(reqText, respond.bind(this, res));
+        return timezones.getTime(reqText, respond.bind(this, res));
     }
 
     // Wolfram
     if (helpers.containsAny(reqText, triggers.wolfram)) {
-        wolframalpha.getResponse(reqText, respond.bind(this, res));
+        return wolframalpha.getResponse(reqText, respond.bind(this, res));
     }
 
-    respond(res, 'Yo, I have no idea what you\'re talking about.');
+    return respond(res, 'Yo, I have no idea what you\'re talking about.');
 
 });
 
