@@ -1,10 +1,10 @@
 var express = require('express'),
     path = require('path'),
-    favicon = require('serve-favicon'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
 
     bot = require('./bot/index'),
+    wolframalpha = require('./integrations/wolframalpha'),
 
     app = express();
 
@@ -25,6 +25,8 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
+wolframalpha.makeRequest('pi');
 
 // error handlers
 

@@ -1,12 +1,61 @@
-var wolfram = require('wolfram').createClient(process.env.wolframappid),
-    _ = require('underscore'),
+var _ = require('underscore'),
     _s = require('underscore.string'),
     util = require('util'),
+    request = require('request'),
+    xmldoc = require('xmldoc'),
 
     phrases = require('../bot/phrases'),
     wolframalpha;
 
 wolframalpha = {
+
+    makeRequest: function (query, callback) {
+        var uri,
+            appid = process.env.wolframappid || '';
+
+        if (!appid) {
+            return callback("Application key not set", null);
+        }
+
+        uri = 'http://api.wolframalpha.com/v2/query?input=' + encodeURIComponent(query);
+        uri += '&primary=true&appid=' + appid;
+
+        request(uri, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                var doc = new xmldoc.XmlDocument(body),
+                    subpods, pods, error, i;
+
+                if (doc.attr.error === true) {
+                    console.warn('Wolfram Parsing Error', util.inspect(doc))
+                    error = doc.childNamed('error').childNamed('msg').val;
+                    callback(error, null);
+                } else {
+                    pods = doc.childrenNamed('pod');
+
+                    _.map(pods, function(node) {
+                        subpods = node.childrenNamed('subpod');
+                        _.map(subpods, function(subnode) {
+                            return {
+                                title: subnode.attr.title,
+                                value: subnode.childNamed('plaintext').val,
+                                image: subnode.childNamed('img').attr.src,
+                            }
+                        });
+
+                        return {
+                            title: node.attr.title,
+                            subpods: subpods, 
+                            primary: (node.attr.primary && node.attr.primary === true) ? true : false
+                        }
+                    })
+                    return callback(null, pods);
+                }
+            } else {
+                return callback(error, null)
+            }
+        })
+
+    },
 
     executeQuery: function (query, callback) {
         wolfram.query(query, function(error, result) {  
