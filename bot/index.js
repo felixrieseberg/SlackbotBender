@@ -2,6 +2,7 @@ var express = require('express'),
     router = express.Router(),
     hook = require('slackhook'),
     util = require('util'),
+    _s = require('underscore.string'),
 
     helpers = require('./helpers'),
     triggers = require('./triggers'),
