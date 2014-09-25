@@ -21,7 +21,7 @@ function respond(res, text) {
 router.post('/', function(req, res){
     var reqText = (req.body.text) ? req.body.text : null,
         reqText = _s.clean(reqText);
-        reqText = _s.strRight(reqText, 'Bender, ');
+        reqText = _s.strRight(reqText, 'Bender: ');
 
     console.log('Request received: ' + reqText);
 
