@@ -58,7 +58,7 @@ wolframalpha = {
     },
 
     executeQuery: function (query, callback) {
-        makeRequest(query, function(error, result) {  
+        this.makeRequest(query, function(error, result) {  
             if (error) {
                 console.warn(util.inspect(error));
             }
@@ -70,13 +70,13 @@ wolframalpha = {
 
         query = _s.strRight(query, 'wolfram');
 
-        makeRequest(query, function(error, result) {  
+        this.makeRequest(query, function(error, result) {  
             var errorText;
 
             if (error) {
                 console.warn('Wolfram Error', util.inspect(error));
                 errorText = phrases.say('error');
-                errorText += 'All I got was: ' + error;
+                errorText += ' All I got was: ' + error;
                 return callback(errorText);
             }
             
