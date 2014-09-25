@@ -6,8 +6,16 @@ var triggers = {
         'Yo Bender,'
     ],
 
+    help: [
+        '!help',
+        '--help',
+        '-help',
+        'what do you know',
+        'how can you help me',
+        'show commands'
+    ],
+
     quotes: [
-        'quote',
         '!quote',
         'say something',
         'what\'s up',
