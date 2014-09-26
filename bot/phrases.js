@@ -10,6 +10,10 @@ var phrases = {
         'Well, I\'m on strike. And it has nothing to do with me not getting results here.'
     ],
 
+    textsuccess: [
+        'Yo, I sent that sucker a message.'
+    ],
+
     wolfram: [
         'I asked Wolfram Alpha and got this back: ',
         

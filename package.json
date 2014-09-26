@@ -16,6 +16,7 @@
     "request": "^2.44.0",
     "slackbot": "0.0.1",
     "slackhook": "^1.0.0",
+    "twilio": "^1.7.0",
     "underscore": "^1.7.0",
     "underscore.string": "^2.3.3",
     "xmldoc": "^0.1.2"

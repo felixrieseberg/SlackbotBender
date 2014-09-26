@@ -10,6 +10,7 @@ var express = require('express'),
     quotes = require('../integrations/quotes'),
     finance = require('../integrations/finance'),
     help = require('../integrations/help'),
+    phonetext = require('../integrations/phonetext'),
     wolframalpha = require('../integrations/wolframalpha'),
     timezones = require('../integrations/timezones'),
     yell = require('../integrations/yell');
@@ -56,6 +57,11 @@ function botify(req, res){
     // Quotes
     if (helpers.containsAny(reqText, triggers.quotes)) {
         return respond(res, quotes.bender());
+    }
+
+    // Text
+    if (helpers.containsAny(reqText, triggers.text)) {
+        return phonetext.text(reqText, respond.bind(this, res));
     }
 
     // Timezones

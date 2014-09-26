@@ -35,6 +35,11 @@ var triggers = {
         'tl;dr'
     ],
 
+    text: [
+        '!text',
+        'send text'
+    ],
+
     timezones: [
         '!time in',
         'time in ',
