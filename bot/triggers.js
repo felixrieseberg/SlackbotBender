@@ -48,7 +48,7 @@ var triggers = {
     yell: [
         '!yell',
         'yell'
-    ],
-}
+    ]
+};
 
 module.exports = triggers;

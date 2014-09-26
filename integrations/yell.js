@@ -21,6 +21,6 @@ yell = {
         });    
     }
 
-}
+};
 
 module.exports = yell;

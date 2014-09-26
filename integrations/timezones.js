@@ -26,6 +26,6 @@ var timezones = {
         });
     }
 
-}
+};
 
 module.exports = timezones;

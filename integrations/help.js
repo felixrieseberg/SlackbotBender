@@ -19,6 +19,6 @@ var help = {
         return callback('Okay, okay, I\'ll tell you how to use this thing.', this.helpPayload);
     }
 
-}
+};
 
 module.exports = help;

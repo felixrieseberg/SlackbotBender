@@ -20,13 +20,13 @@ wolframalpha = {
         uri = 'http://api.wolframalpha.com/v2/query?input=' + encodeURIComponent(query);
         uri += '&primary=true&appid=' + appid;
 
-        request(uri, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
+        request(uri, function (err, response, body) {
+            if (!err && response.statusCode == 200) {
                 var doc = new xmldoc.XmlDocument(body),
                     subpods, pods, error, i;
 
                 if (doc.attr.error === true) {
-                    console.warn('Wolfram Parsing Error', util.inspect(doc))
+                    console.warn('Wolfram Parsing Error', util.inspect(doc));
                     error = doc.childNamed('error').childNamed('msg').val;
                     callback(error, null);
                 } else {
@@ -39,21 +39,21 @@ wolframalpha = {
                                 title: subnode.attr.title,
                                 value: subnode.childNamed('plaintext').val,
                                 image: subnode.childNamed('img').attr.src,
-                            }
+                            };
                         });
 
                         return {
                             title: node.attr.title,
                             subpods: subpods, 
                             primary: (node.attr.primary && node.attr.primary === true) ? true : false
-                        }
-                    })
+                        };
+                    });
                     return callback(null, pods);
                 }
             } else {
-                return callback(error, null)
+                return callback(err, null);
             }
-        })
+        });
 
     },
 
@@ -63,7 +63,7 @@ wolframalpha = {
                 console.warn(util.inspect(error));
             }
             callback(result);
-        })
+        });
     },
 
     getResponse: function (query, callback) {
@@ -87,11 +87,11 @@ wolframalpha = {
             if (result && result.length > 0 && result[0].subpods[0].value) {
                 return callback(phrases.say('wolfram') + result[0].subpods[0].value);
             } else {
-                return callback('I asked Wolfram, but didn\'t really understand the response.')
+                return callback('I asked Wolfram, but didn\'t really understand the response.');
             }
-        })
+        });
     }
 
-}
+};
 
 module.exports = wolframalpha;

@@ -10,6 +10,6 @@ describe('Yell', function(){
     			assert(data.length > 0); 
     			done();
     		});
-    })
-  })
-})
+    });
+  });
+});
