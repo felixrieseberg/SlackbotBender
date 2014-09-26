@@ -55,16 +55,12 @@ router.post('/', function(req, res){
         return wolframalpha.getResponse(reqText, respond.bind(this, res));
     }
 
-<<<<<<< HEAD
     // Yell
     if (helpers.containsAny(reqText, triggers.yell)) {
         return yell.getResponse(reqText, respond.bind(this, res));
     }
 
-    return respond(res, 'Yo, I have no idea what you\'re talking about.');
-=======
     return respond(res, 'Yo @' +req.body.user_name + ', I have no idea what you\'re talking about.');
->>>>>>> felix_remote/master
 
 });
 
