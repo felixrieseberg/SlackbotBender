@@ -4,21 +4,21 @@ var _ = require('underscore'),
     request = require('request'),
     xmldoc = require('xmldoc'),
 
+    config = require('../config'),
     phrases = require('../bot/phrases'),
     wolframalpha;
 
 wolframalpha = {
 
     makeRequest: function (query, callback) {
-        var uri,
-            appid = process.env.wolframappid || '';
+        var uri;
 
-        if (!appid) {
+        if (!config.wolframappid) {
             return callback("Application key not set", null);
         }
 
         uri = 'http://api.wolframalpha.com/v2/query?input=' + encodeURIComponent(query);
-        uri += '&primary=true&appid=' + appid;
+        uri += '&primary=true&appid=' + config.wolframappid;
 
         request(uri, function (err, response, body) {
             if (!err && response.statusCode == 200) {

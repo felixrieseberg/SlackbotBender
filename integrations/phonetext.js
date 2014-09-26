@@ -1,19 +1,22 @@
 var twilio = require('twilio'),
     util = require('util'),
+    _s = require('underscore.string'),
+
     phrases = require('../bot/phrases'),
-    client = new twilio.RestClient(process.env.twilioAccount, !process.env.twilioToken),
+    config = require('../config'),
+    client = new twilio.RestClient(config.twilioAccount, config.twilioToken),
     phonetext;
 
 phonetext = {
 
     sendText: function(text, number, callback) {
-        if (!process.env.twilioNumber || !process.env.twilioAccount || !process.env.twilioToken) {
+        if (!config.twilioNumber || !config.twilioAccount || !config.twilioToken) {
             return callback('Hey, I\'ll need some Twilio config vars over here. This doesn\'t work without \'em.');
         }
 
         client.sendMessage({
             to: number,
-            from: process.env.twilioNumber,
+            from: config.twilioNumber,
             body: text
 
         }, callback);
@@ -31,7 +34,7 @@ phonetext = {
 
             if (error) {
                 console.warn('Twilio Error', util.inspect(error));
-                return callback(error);
+                return callback(error.message);
             }
 
             console.log('Twilio Result', util.inspect(result));
