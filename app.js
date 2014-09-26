@@ -3,7 +3,6 @@ var express = require('express'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
     bot = require('./bot/index'),
-    wolframalpha = require('./integrations/wolframalpha'),
     app = express();
 
 // view engine setup
@@ -23,8 +22,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace
@@ -47,6 +44,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;
