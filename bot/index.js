@@ -8,14 +8,19 @@ var express = require('express'),
     triggers = require('./triggers'),
 
     quotes = require('../integrations/quotes'),
+    help = require('../integrations/help'),
     wolframalpha = require('../integrations/wolframalpha'),
-    timezones = require('../integrations/timezones');
+    timezones = require('../integrations/timezones'),
     yell = require('../integrations/yell');
-    
-function respond(res, text) {
+
+
+function respond(res, text, attachments) {
+    var attachments = attachments || [];
+
     res.json({
         text: text,
-        username: 'Bender'
+        username: 'Bender',
+        attachments: attachments
     });
 }
 
@@ -29,10 +34,15 @@ router.post('/', function(req, res){
     if (!reqText) {
         return res.json({text: 'Yo, you didn\'t even ask for anything. Gimme a command!'});
     }
-    
+
+    // Help
+    if (helpers.containsAny(reqText, triggers.help)) {
+        return help.sendHelp(respond.bind(this, res));
+    }
+
     // Quotes
     if (helpers.containsAny(reqText, triggers.quotes)) {
-        return res.json({text: quotes.bender()});
+        return respond(res, quotes.bender());
     }
 
     // Timezones
@@ -45,12 +55,16 @@ router.post('/', function(req, res){
         return wolframalpha.getResponse(reqText, respond.bind(this, res));
     }
 
+<<<<<<< HEAD
     // Yell
     if (helpers.containsAny(reqText, triggers.yell)) {
         return yell.getResponse(reqText, respond.bind(this, res));
     }
 
     return respond(res, 'Yo, I have no idea what you\'re talking about.');
+=======
+    return respond(res, 'Yo @' +req.body.user_name + ', I have no idea what you\'re talking about.');
+>>>>>>> felix_remote/master
 
 });
 
