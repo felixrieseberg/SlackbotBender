@@ -8,6 +8,7 @@ var express = require('express'),
     triggers = require('./triggers'),
 
     quotes = require('../integrations/quotes'),
+    finance = require('../integrations/finance'),
     help = require('../integrations/help'),
     wolframalpha = require('../integrations/wolframalpha'),
     timezones = require('../integrations/timezones'),
@@ -33,6 +34,11 @@ function botify(req, res){
 
     if (!reqText) {
         return respond(res, 'Yo, you didn\'t even ask for anything. Gimme a command!');
+    }
+
+    // Finance
+    if (helpers.containsAny(reqText, triggers.finance)) {
+        return finance.getResponse(reqText, respond.bind(this, res));
     }
 
     // Help
