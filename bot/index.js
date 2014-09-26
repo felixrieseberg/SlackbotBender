@@ -14,6 +14,12 @@ var express = require('express'),
     timezones = require('../integrations/timezones'),
     yell = require('../integrations/yell');
 
+function authorize(req, res, next) {
+    if (process.env.slacktoken && process.env.slacktoken !== req.body.token) {
+        return res.status(401).send('Not authorized');
+    }
+    return next();
+}
 
 function respond(res, text, attachments) {
     attachments = attachments || [];
@@ -26,6 +32,7 @@ function respond(res, text, attachments) {
 }
 
 function botify(req, res){
+
     var reqText = req.query.text || req.body.text || null;
 
     reqText = _s.strRight(_s.clean(reqText), 'Bender: ');
@@ -70,7 +77,7 @@ function botify(req, res){
 
 }
 
-router.post('/', botify);
-router.get('/', botify);
+router.post('/', authorize, botify);
+router.get('/', authorize, botify);
 
 module.exports = router;
