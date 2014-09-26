@@ -7,9 +7,11 @@ var help = {
             {
                 'title': 'Commands', // The title may not contain markup and will be escaped for you
                 'value': '!help: Show\'s this list of available commands.\n' +
+                         '!ticker ("ticker): Get the current stock price for a symbol.\n' +   
                          '!time ("how late is it in", "how early is it in"): Get\'s the current time for a given location.\n' +
                          '!quote ("say something"): Let Bender entertain you!\n' +
-                         '!wolfram ("ask wolfram", "check wolfram"): Queries Wolfram Alpha for a given query.',
+                         '!wolfram ("ask wolfram", "check wolfram"): Queries Wolfram Alpha for a given query.\n' +
+                         '!yell ("yell"): Bender will yell stuff for you.',
                 'short': false 
             }
         ]

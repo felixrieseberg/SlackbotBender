@@ -1,6 +1,7 @@
 var triggers = {
 
     finance: [
+        '!ticker',
         'ticker'
     ],
 
