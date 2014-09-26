@@ -3,7 +3,7 @@ yell = require('../integrations/yell');
 
 describe('Yell', function(){
   describe('#getResponse()', function(){
-    it('should return multiple lines of text when called with a string', function(done){
+    it('should return some text when called with a string', function(done){
     	yell.getResponse('yell hello world!', function(data) 
     		{ 
     			console.log(data);
