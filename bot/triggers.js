@@ -1,5 +1,9 @@
 var triggers = {
 
+    finance: [
+        'ticker'
+    ],
+
     hi: [
         'Hi Bender',
         'Hey Bender',
