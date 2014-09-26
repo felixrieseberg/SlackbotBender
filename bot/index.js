@@ -18,20 +18,21 @@ function respond(res, text) {
     });
 }
 
-router.post('/', function(req, res){
-    var reqText = (req.body.text) ? req.body.text : null,
+function botify(req, res){
+    var reqText = req.query.text || req.body.text || null,
         reqText = _s.clean(reqText);
-        reqText = _s.strRight(reqText, 'Bender: ');
+    reqText = _s.strRight(reqText, 'Bender: ');
 
-    console.log('Request received: ' + reqText);
+    debugger;
+    console.log('Request received: ' + reqText + ', ' + req.params.text);
 
     if (!reqText) {
-        return res.json({text: 'Yo, you didn\'t even ask for anything. Gimme a command!'});
+        return respond(res, 'Yo, you didn\'t even ask for anything. Gimme a command!');
     }
-    
+
     // Quotes
     if (helpers.containsAny(reqText, triggers.quotes)) {
-        return res.json({text: quotes.bender()});
+        return respond(res, quotes.bender());
     }
 
     // Timezones
@@ -46,6 +47,9 @@ router.post('/', function(req, res){
 
     return respond(res, 'Yo, I have no idea what you\'re talking about.');
 
-});
+}
+
+router.post('/', botify);
+router.get('/', botify);
 
 module.exports = router;

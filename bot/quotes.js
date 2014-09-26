@@ -6,7 +6,7 @@ var quotes = {
     ],
 
     bender: function () {
-        var quote = this.benderQuotes[Math.floor(Math.random() * this.benderQuotes.length);
+        var quote = this.benderQuotes[Math.floor(Math.random() * this.benderQuotes.length)];
         return quote;
     }
 
