@@ -35,7 +35,12 @@ var triggers = {
         '!wolfram',
         'check wolfram',
         'ask wolfram'
-    ]
+    ],
+
+    yell: [
+        '!yell',
+        'yell'
+    ],
 }
 
 module.exports = triggers;

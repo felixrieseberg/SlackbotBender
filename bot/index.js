@@ -10,7 +10,8 @@ var express = require('express'),
     quotes = require('../integrations/quotes'),
     wolframalpha = require('../integrations/wolframalpha'),
     timezones = require('../integrations/timezones');
-
+    yell = require('../integrations/yell');
+    
 function respond(res, text) {
     res.json({
         text: text,
@@ -42,6 +43,11 @@ router.post('/', function(req, res){
     // Wolfram
     if (helpers.containsAny(reqText, triggers.wolfram)) {
         return wolframalpha.getResponse(reqText, respond.bind(this, res));
+    }
+
+    // Yell
+    if (helpers.containsAny(reqText, triggers.yell)) {
+        return yell.getResponse(reqText, respond.bind(this, res));
     }
 
     return respond(res, 'Yo, I have no idea what you\'re talking about.');
