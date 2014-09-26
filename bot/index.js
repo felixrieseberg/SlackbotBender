@@ -19,12 +19,11 @@ function respond(res, text) {
 }
 
 function botify(req, res){
-    var reqText = req.query.text || req.body.text || null,
-        reqText = _s.clean(reqText);
-    reqText = _s.strRight(reqText, 'Bender: ');
+    var reqText = req.query.text || req.body.text || null;
 
-    debugger;
-    console.log('Request received: ' + reqText + ', ' + req.params.text);
+    reqText = _s.strRight(_s.clean(reqText), 'Bender: ');
+
+    console.log('Request received: ' + reqText);
 
     if (!reqText) {
         return respond(res, 'Yo, you didn\'t even ask for anything. Gimme a command!');

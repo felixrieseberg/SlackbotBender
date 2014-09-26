@@ -36,6 +36,6 @@ var triggers = {
         'check wolfram',
         'ask wolfram'
     ]
-}
+};
 
 module.exports = triggers;

@@ -10,6 +10,6 @@ var quotes = {
         return quote;
     }
 
-}
+};
 
 module.exports = quotes;

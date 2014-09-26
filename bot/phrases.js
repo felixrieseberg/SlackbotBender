@@ -20,18 +20,15 @@ var phrases = {
         switch (type) {
             case 'noresult':
                 return this.noresult[Math.floor(Math.random() * this.noresult.length)];
-                break;
             case 'error':
                 return this.errors[Math.floor(Math.random() * this.errors.length)];
-                break;
             case 'wolfram':
                 return this.wolfram[Math.floor(Math.random() * this.wolfram.length)];
-                break;
             default:
                 break;
         }
     }
 
-}
+};
 
 module.exports = phrases;
