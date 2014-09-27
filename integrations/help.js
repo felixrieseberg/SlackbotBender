@@ -7,8 +7,11 @@ var help = {
             {
                 'title': 'Commands', // The title may not contain markup and will be escaped for you
                 'value': '!help: Show\'s this list of available commands.\n' +
+                         '!savenumber [number] [name] ("save phone number [number] for [name]"): Saves a number for a given name.\n' +
+                         '!text [number/name] [message] (send text [number/name] [message]): Sends a text message to that phone number or person, if the number is saved.\n' +
                          '!ticker ("ticker): Get the current stock price for a symbol.\n' +   
                          '!time ("how late is it in", "how early is it in"): Get\'s the current time for a given location.\n' +
+                         '!ping [number/name] (ping [number/name] [message]): Let\'s that phone number or person know that they\'re needed in the Slack chat.\n' +
                          '!quote ("say something"): Let Bender entertain you!\n' +
                          '!wolfram ("ask wolfram", "check wolfram"): Queries Wolfram Alpha for a given query.\n' +
                          '!yell ("yell"): Bender will yell stuff for you.',

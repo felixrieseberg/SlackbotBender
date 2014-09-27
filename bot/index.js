@@ -64,6 +64,11 @@ function botify(req, res){
         return phonetext.text(reqText, respond.bind(this, res));
     }
 
+    // Ping 
+    if (helpers.containsAny(reqText, triggers.ping)) {
+        return phonetext.ping(reqText, respond.bind(this, res));
+    } 
+
     // Save Phone Number
     if (helpers.containsAny(reqText, triggers.savenumber)) {
         return phonetext.setNumber(reqText, respond.bind(this, res));

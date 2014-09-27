@@ -40,6 +40,11 @@ var triggers = {
         'send text'
     ],
 
+    ping: [
+        '!ping',
+        'ping'
+    ],
+
     savenumber: [
         '!savenumber',
         'save phone number'
