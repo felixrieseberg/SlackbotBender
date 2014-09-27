@@ -1,20 +1,22 @@
-var express = require('express'),
-    router = express.Router(),
-    hook = require('slackhook'),
-    util = require('util'),
-    _s = require('underscore.string'),
+var express         = require('express'),
+    router          = express.Router(),
+    hook            = require('slackhook'),
+    util            = require('util'),
+    _s              = require('underscore.string'),
 
-    helpers = require('./helpers'),
-    triggers = require('./triggers'),
+    helpers         = require('./helpers'),
+    triggers        = require('./triggers'),
 
-    quotes = require('../integrations/quotes'),
-    finance = require('../integrations/finance'),
-    help = require('../integrations/help'),
-    phonetext = require('../integrations/phonetext'),
-    srsly = require('../integrations/srslyGuys'),
-    wolframalpha = require('../integrations/wolframalpha'),
-    timezones = require('../integrations/timezones'),
-    yell = require('../integrations/yell');
+    development     = require('../integrations/development'),
+    finance         = require('../integrations/finance'),
+    quotes          = require('../integrations/quotes'),
+
+    help            = require('../integrations/help'),
+    phonetext       = require('../integrations/phonetext'),
+    srsly           = require('../integrations/srslyGuys'),
+    wolframalpha    = require('../integrations/wolframalpha'),
+    timezones       = require('../integrations/timezones'),
+    yell            = require('../integrations/yell');
 
 function authorize(req, res, next) {
     if (process.env.slacktoken && process.env.slacktoken !== req.body.token) {
@@ -43,6 +45,11 @@ function botify(req, res){
 
     if (!reqText) {
         return respond(res, 'Yo, you didn\'t even ask for anything. Gimme a command!');
+    }
+
+    // Development
+    if (helpers.containsAny(reqText, triggers.development)) {
+        return development.getResponse(respond.bind(this, res));
     }
 
     // Finance

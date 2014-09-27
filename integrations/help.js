@@ -7,6 +7,7 @@ var help = {
             {
                 'title': 'Commands', // The title may not contain markup and will be escaped for you
                 'value': '!help: Show\'s this list of available commands.\n' +
+                         '!about (!development, "let\'s see your debug info"): Get\'s a bunch of debug info.\n' +
                          '!savenumber [number] [name] ("save phone number [number] for [name]"): Saves a number for a given name.\n' +
                          '!text [number/name] [message] (send text [number/name] [message]): Sends a text message to that phone number or person, if the number is saved.\n' +
                          '!ticker ("ticker): Get the current stock price for a symbol.\n' +   

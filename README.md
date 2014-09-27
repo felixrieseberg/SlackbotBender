@@ -12,6 +12,7 @@ is the WolframAlpha integration, since it`s a bit more interesting than the imme
 of a string.
 
 ## Current Integrations
+- Debug Info
 - Yahoo Finance
 - Bender Quotes
 - Twilio (Text Messages)
