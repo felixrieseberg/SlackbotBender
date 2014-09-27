@@ -50,6 +50,10 @@ var triggers = {
         'save phone number'
     ],
 
+    srsly: [
+        'srsly'
+    ],
+
     timezones: [
         '!time in',
         'time in ',

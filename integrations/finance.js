@@ -18,7 +18,8 @@ var downQuotes = [
     "Let's face it, comedy's a dead art form. Tragedy, now that's funny.",
     "Tempers are wearing thin. Let's hope some robot doesn't kill everybody.",
     "This is the worst kind of discrimination. The kind against me!",
-    "Oh, so it's just coincidence that Zoidberg is desperately poor and miserably lonely? Please!"
+    "Oh, so it's just coincidence that Zoidberg is desperately poor and miserably lonely? Please!",
+    "No! I want to live! There are still too many things I don't own!"
 ];
 
 var noMovement = [
