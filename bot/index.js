@@ -11,6 +11,7 @@ var express = require('express'),
     finance = require('../integrations/finance'),
     help = require('../integrations/help'),
     phonetext = require('../integrations/phonetext'),
+    srsly = require('../integrations/srslyGuys'),
     wolframalpha = require('../integrations/wolframalpha'),
     timezones = require('../integrations/timezones'),
     yell = require('../integrations/yell');
@@ -72,6 +73,11 @@ function botify(req, res){
     // Save Phone Number
     if (helpers.containsAny(reqText, triggers.savenumber)) {
         return phonetext.setNumber(reqText, respond.bind(this, res));
+    }
+
+    // Srsly, Guys
+    if (helpers.containsAny(reqText, triggers.srsly)) {
+        return respond(res, srsly.guys(reqText));
     }
 
     // Timezones
