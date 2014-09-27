@@ -43,7 +43,7 @@ module.exports = function(grunt) {
         makeReport: {
             src: 'coverage/reports/**/*.json',
             options: {
-                type: 'lcov',
+                type: 'html',
                 dir: 'coverage/reports',
                 print: 'detail'
             }
