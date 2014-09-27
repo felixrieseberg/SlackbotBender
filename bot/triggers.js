@@ -3,7 +3,7 @@ var triggers = {
     development: [
         '!development',
         '!about',
-        'let\'s see your debug info'
+        'let\'s check your debug info'
     ],
 
     finance: [

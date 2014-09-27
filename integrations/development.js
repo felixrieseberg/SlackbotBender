@@ -5,7 +5,7 @@ function secondsToString(ms) {
         numdays = Math.floor(seconds / 86400),
         numhours = Math.floor((seconds / 86400) % 3600),
         numminutes = Math.floor(((seconds / 86400) % 3600) / 60),
-        numseconds = ((seconds % 86400) % 3600) % 60;
+        numseconds = ((seconds / 86400) % 3600) % 60;
 
     return numdays + " days " + numhours + " hours " + numminutes + " minutes " + numseconds + " seconds";
 };
