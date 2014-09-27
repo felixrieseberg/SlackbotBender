@@ -58,7 +58,7 @@ phonetext = {
     ping: function (query, callback) {
         var message = 'It\'s me, Bender! Just so you know, the peepz in the Slack chat need you.';
         query = _s.strRight(query, 'ping ');
-        this.text('text ' + query, callback);
+        this.text('text ' + query + ' ' + message, callback);
     },
 
     text: function (query, callback) {
