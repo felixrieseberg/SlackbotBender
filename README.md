@@ -16,7 +16,7 @@ of a string.
 - Bender Quotes
 - Twilio (Text Messages)
 - Wolfram Alpha (experimental)
-- Yelling
+- Yelling (repeats text in fancy ASCII art)
 
 ## License
 The MIT License (MIT)
