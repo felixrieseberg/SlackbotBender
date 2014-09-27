@@ -51,6 +51,7 @@ var triggers = {
     ],
 
     srsly: [
+        '!srsly',
         'srsly'
     ],
 
