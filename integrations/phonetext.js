@@ -1,5 +1,4 @@
 var twilio = require('twilio'),
-    redis = require("redis"),
     util = require('util'),
     _ = require('underscore'),
     _s = require('underscore.string'),
