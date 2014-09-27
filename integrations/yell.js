@@ -14,7 +14,7 @@ yell = {
             font: 'block'            
         }, function(err, data) {
                 if (err) {
-                    console.log("Figlet error!");
+                    console.log('Figlet error! '+err+', '+data);
                     return;
                 }
                 return callback(" \n" + data);

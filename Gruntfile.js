@@ -2,13 +2,14 @@ module.exports = function(grunt) {
     grunt.initConfig({
         simplemocha: {
             options: {
-              globals: ['should'],
-              timeout: 3000,
-              ignoreLeaks: false,
-              ui: 'bdd',
-              reporter: 'list',
+                globals: ['should'],
+                timeout: 3000,
+                ignoreLeaks: false,
+                ui: 'bdd',
+                reporter: 'list'
             },
-            all: { src: ['test/**/*.js'] }
+            all: { src: ['test/**/*.js'] },
+            coverage: { src: ['coverage/instrument/test/**/*.js' ] }
         },
 
         jshint: {
@@ -20,13 +21,43 @@ module.exports = function(grunt) {
                 src: ['*.js', 'test/**/*.js'],
                 dest: 'doc'
             }
+        },
+
+        env: {
+            coverage: {
+                DIR_FOR_CODE_COVERAGE: '../coverage/instrument/'
+            }
+        },
+        instrument: {
+            files: ['app.js', 'bot/**/*.js', 'integrations/**/*.js', 'test/**/*.js' ],
+            options: {
+                lazy: true,
+                basePath: 'coverage/instrument/'
+            }
+        },
+        storeCoverage: {
+            options: {
+                dir: 'coverage/reports'
+            }
+        },
+        makeReport: {
+            src: 'coverage/reports/**/*.json',
+            options: {
+                type: 'html',
+                dir: 'coverage/reports',
+                print: 'detail'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-simple-mocha');
     grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-istanbul');
 
-    grunt.registerTask('test', ['simplemocha']);
+    grunt.registerTask('coverage', ['instrument', 'simplemocha:coverage', 'storeCoverage', 'makeReport']);
+    grunt.registerTask('test', ['simplemocha:all']);
     grunt.registerTask('build', ['jshint', 'test']);
+
+    grunt.registerTask('default', ['jshint', 'coverage']);
 };
