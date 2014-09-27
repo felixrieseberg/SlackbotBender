@@ -11,6 +11,13 @@ Each integration has its own module found in `integrations`. A good example inte
 is the WolframAlpha integration, since it`s a bit more interesting than the immediate return
 of a string.
 
+## Current Integrations
+- Yahoo Finance
+- Bender Quotes
+- Twilio (Text Messages)
+- Wolfram Alpha (experimental)
+- Yelling
+
 ## License
 The MIT License (MIT)
 
