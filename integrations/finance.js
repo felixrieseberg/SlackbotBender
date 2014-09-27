@@ -28,12 +28,19 @@ var noMovement = [
 
 var failure = "Something's broken. Life can be hilariously cruel.";
 
+function coalesce() {
+    for (var i = 0; i < arguments.length; i += 2) {
+        if (!isNaN(arguments[i])) return (arguments[i] + ' ' + arguments[i+1]);
+    }
+    return '-';
+}
+
 var finance = {
 
     getResponse: function (query, callback) {
 
-        query = _s.trim(_s.strRight(query, 'ticker'));
-        var url = 'http://finance.yahoo.com/d/quotes.csv?s='+query+'&f=nabc1p2m8';
+        var symbol = _s.trim(_s.strRight(query, 'ticker'));
+        var url = 'http://finance.yahoo.com/d/quotes.csv?s='+symbol+'&f=nabc1p2m8';
         request.get(url, function(err, res, body) {
             if (err || res.statusCode !== 200) {
                 console.log("Yahoo finance error fetching $url");
@@ -42,16 +49,16 @@ var finance = {
             }
 
             var data = body.split('\n')[0].split(',');
-            var name = data[0];
-            var ask = parseFloat(data[1]);
-            var bid = parseFloat(data[2]);
-            var change = parseFloat(data[3]);
-            var changePct = parseFloat(data[4]);
-            var ma50ChangePct = parseFloat(data[5]);
-            var result = name + ' is at ' + bid +' (' + (isNaN(changePct) ? '-' : changePct) + ')';
-            if (ma50ChangePct > 10 || changePct > 5) {
+            var name = data[0],
+                ask = parseFloat(data[1]),
+                bid = parseFloat(data[2]),
+                change = parseFloat(data[3]),
+                changePct = parseFloat(data[4]),
+                ma50ChangePct = parseFloat(data[5]);
+            var result = name + ' is at ' + coalesce(bid, 'bid', ask, 'ask') +' (' + coalesce(changePct, '%', ma50ChangePct, '% [50-day MA]') + ')';
+            if (ma50ChangePct > 10 || changePct > 2) {
                 result += ", " + randMsg(upQuotes);
-            } else if (ma50ChangePct < -10 || changePct < -5) {
+            } else if (ma50ChangePct < -10 || changePct < -2) {
                 result += ", " + randMsg(downQuotes);
             } else {
                 result += ", " + randMsg(noMovement);
