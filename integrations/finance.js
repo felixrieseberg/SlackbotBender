@@ -28,6 +28,8 @@ var noMovement = [
 
 var failure = "Something's broken. Life can be hilariously cruel.";
 
+var badSymbol = "That's not a symbol, ass-hat.";
+
 function coalesce() {
     for (var i = 0; i < arguments.length; i += 2) {
         if (!isNaN(arguments[i])) return (arguments[i] + ' ' + arguments[i+1]);
@@ -40,17 +42,27 @@ var finance = {
     getResponse: function (query, callback) {
 
         var symbol = _s.trim(_s.strRight(query, 'ticker'));
+        if (symbol.length > 10 || symbol.match(/\s/)) {
+            callback(badSymbol);
+            return;
+        }
         var url = 'http://finance.yahoo.com/d/quotes.csv?s='+symbol+'&f=nabc1p2m8';
         request.get(url, function(err, res, body) {
             if (err || res.statusCode !== 200) {
-                console.log("Yahoo finance error fetching $url");
+                console.log("Yahoo finance error fetching "+url+': '+err+', '+res.statusCode);
                 callback(failure);
                 return;
             }
 
-            var data = body.split('\n')[0].split(',');
-            var name = data[0],
-                ask = parseFloat(data[1]),
+            var data = body.split('\r\n')[0].split(',').map(function (x) { return _s.trim(x, ' \t"'); }),
+                name = data.shift();
+            debugger;
+            if (data.every(function (x) { return x == 'N/A'; })) {
+                callback(badSymbol);
+                return;
+            }
+
+            var ask = parseFloat(data[1]),
                 bid = parseFloat(data[2]),
                 change = parseFloat(data[3]),
                 changePct = parseFloat(data[4]),

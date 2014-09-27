@@ -11,5 +11,23 @@ describe('Finance', function(){
                 done();
             });
         });
+
+        it('should tolerate bad input', function(done){
+            finance.getResponse('ticker no symbol here', function(data)
+            {
+                console.log(data);
+                data.should.match(/not a symbol/);
+                done();
+            });
+        });
+
+        it('should tolerate non-existent symbols', function(done){
+            finance.getResponse('ticker nostock', function(data)
+            {
+                console.log(data);
+                data.should.match(/not a symbol/);
+                done();
+            });
+        });
     });
 });
