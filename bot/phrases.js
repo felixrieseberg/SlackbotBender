@@ -10,23 +10,17 @@ var phrases = {
         'Well, I\'m on strike. And it has nothing to do with me not getting results here.'
     ],
 
+    textsuccess: [
+        'Yo, I sent that sucker a message.'
+    ],
+
     wolfram: [
         'I asked Wolfram Alpha and got this back: ',
         
     ],
 
     say: function (type) {
-
-        switch (type) {
-            case 'noresult':
-                return this.noresult[Math.floor(Math.random() * this.noresult.length)];
-            case 'error':
-                return this.errors[Math.floor(Math.random() * this.errors.length)];
-            case 'wolfram':
-                return this.wolfram[Math.floor(Math.random() * this.wolfram.length)];
-            default:
-                break;
-        }
+        return this[type][Math.floor(Math.random() * this[type].length)];
     }
 
 };

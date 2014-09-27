@@ -35,6 +35,21 @@ var triggers = {
         'tl;dr'
     ],
 
+    text: [
+        '!text',
+        'send text'
+    ],
+
+    ping: [
+        '!ping',
+        'ping'
+    ],
+
+    savenumber: [
+        '!savenumber',
+        'save phone number'
+    ],
+
     timezones: [
         '!time in',
         'time in ',
