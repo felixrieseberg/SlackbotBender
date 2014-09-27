@@ -20,17 +20,7 @@ var phrases = {
     ],
 
     say: function (type) {
-
-        switch (type) {
-            case 'noresult':
-                return this.noresult[Math.floor(Math.random() * this.noresult.length)];
-            case 'error':
-                return this.errors[Math.floor(Math.random() * this.errors.length)];
-            case 'wolfram':
-                return this.wolfram[Math.floor(Math.random() * this.wolfram.length)];
-            default:
-                break;
-        }
+        return this[type][Math.floor(Math.random() * this[type].length)];
     }
 
 };

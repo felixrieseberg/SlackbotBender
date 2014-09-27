@@ -40,6 +40,11 @@ var triggers = {
         'send text'
     ],
 
+    savenumber: [
+        '!savenumber',
+        'save phone number'
+    ],
+
     timezones: [
         '!time in',
         'time in ',

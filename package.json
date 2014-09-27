@@ -13,6 +13,7 @@
     "figlet": "^1.1.0",
     "jade": "^1.7.0",
     "morgan": "~1.3.0",
+    "node-persist": "0.0.2",
     "request": "^2.44.0",
     "slackbot": "0.0.1",
     "slackhook": "^1.0.0",
