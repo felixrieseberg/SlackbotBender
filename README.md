@@ -1,4 +1,4 @@
-Slackbot Bender
+Slackbot Bender [![Build Status](https://travis-ci.org/felixrieseberg/SlackbotBender.svg?branch=master)](https://travis-ci.org/felixrieseberg/SlackbotBender)
 ==============
 This is a simple, but easily extendable bot for the great chat app [Slack](http://www.slack.com).
 
@@ -15,9 +15,12 @@ of a string.
 - Debug Info
 - Yahoo Finance
 - Bender Quotes
-- Twilio (Text Messages)
-- Wolfram Alpha (experimental)
+- Help
+- Text Messaging (using Twilio)
 - Yelling (repeats text in fancy ASCII art)
+- Timezones (using Wolfram Alpha)
+- Memes (experimental)
+- Wolfram Alpha (experimental)
 
 ## License
 The MIT License (MIT)

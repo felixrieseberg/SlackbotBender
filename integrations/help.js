@@ -21,7 +21,7 @@ var help = {
         ]
     }],
 
-    sendHelp: function (callback) {
+    sendHelp: function (reqText, callback) {
         return callback('Okay, okay, I\'ll tell you how to use this thing.', this.helpPayload);
     }
 

@@ -1,9 +1,9 @@
 var config = {
 
     slacktoken: process.env.slacktoken,
-    twilioNumber: process.env.twilioNumber || '+19143686655',
-    twilioAccount: process.env.twilioAccount || 'AC187fee161f0722fdbafadb0c6e714053',
-    twilioToken: process.env.twilioToken || '80790faef92edd07e2b2d265e6eeafe6',
+    twilioNumber: process.env.twilioNumber || '+123456789',
+    twilioAccount: process.env.twilioAccount || 'YOURACCOUNT',
+    twilioToken: process.env.twilioToken || 'YOURTOKEN',
     wolframappid: process.env.wolframappid || ''
 
 };

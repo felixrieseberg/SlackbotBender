@@ -1,7 +1,6 @@
 var _ = require('underscore'),
     _s = require('underscore.string'),
-    bing = require('node-bing-api'),
-    util = require('util');
+    bing = require('node-bing-api');
 
 var noApiKey = "No data without the key, meatbag.";
 
@@ -11,15 +10,14 @@ var noData = "You can't even search for things correctly, idiot.";
 
 var srslyGuys = {
 
-    guys: function (query, callback) {
-
+    guys: function (query, key, callback) {
         var img = _s.trim(_s.strRight(query, 'srsly'));
-        if (!process.env.BING_API_KEY) {
+        if (!key && !process.env.BING_API_KEY) {
             callback(noApiKey);
             return;
         }
 
-        var bingClient = bing({ accKey: process.env.BING_API_KEY });
+        var bingClient = bing({ accKey: key || process.env.BING_API_KEY });
         bingClient.images(img + ' gif', function (err, res, body) {
             if (err || res.statusCode != 200) {
                console.log('Failed call for '+img+': '+err+', status='+res.statusCode);

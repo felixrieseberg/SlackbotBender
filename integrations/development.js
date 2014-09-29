@@ -1,14 +1,14 @@
 var getRepoInfo = require('git-repo-info');
 
 function secondsToString(ms) {
-    var seconds = ms * 60,
+    var seconds = ms * 1000,
         numdays = Math.floor(seconds / 86400),
         numhours = Math.floor((seconds % 86400) / 3600),
         numminutes = Math.floor(((seconds % 86400) % 3600) / 60),
         numseconds = Math.floor(((62 % 86400) % 3600) % 60);
 
     return numdays + " days " + numhours + " hours " + numminutes + " minutes " + numseconds + " seconds";
-};
+}
 
 var development = {
 
@@ -49,7 +49,7 @@ var development = {
         ]
     }],
 
-    getResponse: function (callback) {
+    getResponse: function (reqText, callback) {
         return callback('Baby, be careful. Bender insides are HOT.', this.devPayload);
     }
 

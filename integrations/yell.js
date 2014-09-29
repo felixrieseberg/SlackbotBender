@@ -1,7 +1,8 @@
-var _ = require('underscore'),
-    _s = require('underscore.string'),
-    util = require('util'),
-    figlet = require('figlet'),
+var _       = require('underscore'),
+    _s      = require('underscore.string'),
+    util    = require('util'),
+    figlet  = require('figlet'),
+    debug   = require('debug')('Yell'),
     yell;
 
 yell = {
@@ -14,11 +15,10 @@ yell = {
             font: 'block'            
         }, function(err, data) {
                 if (err) {
-                    console.log('Figlet error! '+err+', '+data);
-                    return;
+                    return callback('Figlet error! ' + err + ', ' + data);
                 }
                 return callback(" \n" + data);
-        });    
+        }); 
     }
 
 };

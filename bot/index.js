@@ -3,14 +3,15 @@ var express         = require('express'),
     hook            = require('slackhook'),
     util            = require('util'),
     _s              = require('underscore.string'),
+    debug           = require('debug')('Bender'),
 
     helpers         = require('./helpers'),
     triggers        = require('./triggers'),
 
+    // Integrations & Tricks
     development     = require('../integrations/development'),
     finance         = require('../integrations/finance'),
     quotes          = require('../integrations/quotes'),
-
     help            = require('../integrations/help'),
     phonetext       = require('../integrations/phonetext'),
     srsly           = require('../integrations/srslyGuys'),
@@ -38,67 +39,66 @@ function respond(res, text, attachments) {
 function botify(req, res){
 
     var reqText = req.query.text || req.body.text || null;
+        reqText = _s.strRight(_s.clean(reqText), 'Bender: ');
 
-    reqText = _s.strRight(_s.clean(reqText), 'Bender: ');
-
-    console.log('Request received: ' + reqText);
+    debug('Request received: ' + reqText);
 
     if (!reqText) {
         return respond(res, 'Yo, you didn\'t even ask for anything. Gimme a command!');
     }
 
     // Development
-    if (helpers.containsAny(reqText, triggers.development)) {
-        return development.getResponse(respond.bind(this, res));
+    if (helpers.startsWithAny(reqText, triggers.development)) {
+        return development.getResponse(reqText, respond.bind(this, res));
     }
 
     // Finance
-    if (helpers.containsAny(reqText, triggers.finance)) {
+    if (helpers.startsWithAny(reqText, triggers.finance)) {
         return finance.getResponse(reqText, respond.bind(this, res));
     }
 
     // Help
-    if (helpers.containsAny(reqText, triggers.help)) {
-        return help.sendHelp(respond.bind(this, res));
+    if (helpers.startsWithAny(reqText, triggers.help)) {
+        return help.sendHelp(reqText, respond.bind(this, res));
     }
 
     // Quotes
-    if (helpers.containsAny(reqText, triggers.quotes)) {
-        return respond(res, quotes.bender());
+    if (helpers.startsWithAny(reqText, triggers.quotes)) {
+        return quotes.bender(reqText, respond.bind(this, res));
     }
 
     // Text
-    if (helpers.containsAny(reqText, triggers.text)) {
+    if (helpers.startsWithAny(reqText, triggers.text)) {
         return phonetext.text(reqText, respond.bind(this, res));
     }
 
     // Ping 
-    if (helpers.containsAny(reqText, triggers.ping)) {
+    if (helpers.startsWithAny(reqText, triggers.ping)) {
         return phonetext.ping(reqText, respond.bind(this, res));
     } 
 
     // Save Phone Number
-    if (helpers.containsAny(reqText, triggers.savenumber)) {
+    if (helpers.startsWithAny(reqText, triggers.savenumber)) {
         return phonetext.setNumber(reqText, respond.bind(this, res));
     }
 
     // Srsly, Guys
     if (helpers.containsAny(reqText, triggers.srsly)) {
-        return srsly.guys(reqText, respond.bind(this, res));
+        return srsly.guys(reqText, req.body.bingApiKey, respond.bind(this, res));
     }
 
     // Timezones
-    if (helpers.containsAny(reqText, triggers.timezones)) {
+    if (helpers.startsWithAny(reqText, triggers.timezones)) {
         return timezones.getTime(reqText, respond.bind(this, res));
     }
 
     // Wolfram
-    if (helpers.containsAny(reqText, triggers.wolfram)) {
+    if (helpers.startsWithAny(reqText, triggers.wolfram)) {
         return wolframalpha.getResponse(reqText, respond.bind(this, res));
     }
 
     // Yell
-    if (helpers.containsAny(reqText, triggers.yell)) {
+    if (helpers.startsWithAny(reqText, triggers.yell)) {
         return yell.getResponse(reqText, respond.bind(this, res));
     }
 
@@ -107,6 +107,5 @@ function botify(req, res){
 }
 
 router.post('/', authorize, botify);
-router.get('/', authorize, botify);
 
 module.exports = router;

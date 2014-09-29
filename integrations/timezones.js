@@ -1,8 +1,8 @@
-var wolframalpha = require('./wolframalpha'),
-    _ = require('underscore'),
-    util = require('util'),
+var wolframalpha    = require('./wolframalpha'),
+    _               = require('underscore'),
+    util            = require('util'),
 
-    phrases = require('../bot/phrases');
+    phrases         = require('../bot/phrases');
 
 var timezones = {
 
