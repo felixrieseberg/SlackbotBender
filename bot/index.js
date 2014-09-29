@@ -84,7 +84,7 @@ function botify(req, res){
 
     // Srsly, Guys
     if (helpers.containsAny(reqText, triggers.srsly)) {
-        return respond(res, srsly.guys(reqText));
+        return srsly.guys(reqText, respond.bind(this, res));
     }
 
     // Timezones

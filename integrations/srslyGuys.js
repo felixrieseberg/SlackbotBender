@@ -1,22 +1,48 @@
 var _ = require('underscore'),
     _s = require('underscore.string'),
+    bing = require('node-bing-api'),
     util = require('util');
 
-var images = {
-    'chipmunk': 'http://25.media.tumblr.com/tumblr_lk14iuHICw1qa6xa3o1_500.gif'
-};
+var noApiKey = "No data without the key, meatbag.";
 
-var missingImg = 'Bad image, meatbag.';
+var callFailure = "Apparently, Bing hates you as much as I do.";
+
+var noData = "You can't even search for things correctly, idiot.";
 
 var srslyGuys = {
 
-    guys: function (query) {
+    guys: function (query, callback) {
 
         var img = _s.trim(_s.strRight(query, 'srsly'));
-        var text = images[img];
-        if (!text) text = missingImg;
+        if (!process.env.BING_API_KEY) {
+            callback(noApiKey);
+            return;
+        }
 
-        return text;
+        var bingClient = bing({ accKey: process.env.BING_API_KEY });
+        bingClient.images(img + ' gif', function (err, res, body) {
+            if (err || res.statusCode != 200) {
+               console.log('Failed call for '+img+': '+err+', status='+res.statusCode);
+               callback(callFailure);
+               return;
+            }
+
+            if (!body || !body.d || !body.d.results) {
+               callback(noData);
+               return;
+            }
+
+            for (var idx in body.d.results) {
+               var result = body.d.results[idx];
+               if (result.MediaUrl.endsWith('.gif')) {
+                   callback(result.MediaUrl);
+                   return;
+               }
+            }
+
+            callback(noData);
+            return;
+        });
     }
 };
 

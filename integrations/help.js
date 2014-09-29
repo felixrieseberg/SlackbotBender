@@ -10,7 +10,7 @@ var help = {
                          '!about (!development, "let\'s see your debug info"): Get\'s a bunch of debug info.\n' +
                          '!savenumber [number] [name] ("save phone number [number] for [name]"): Saves a number for a given name.\n' +
                          '!text [number/name] [message] (send text [number/name] [message]): Sends a text message to that phone number or person, if the number is saved.\n' +
-                         '!ticker ("ticker): Get the current stock price for a symbol.\n' +   
+                         '!ticker ("ticker"): Get the current stock price for a symbol.\n' +
                          '!time ("how late is it in", "how early is it in"): Get\'s the current time for a given location.\n' +
                          '!ping [number/name] (ping [number/name] [message]): Let\'s that phone number or person know that they\'re needed in the Slack chat.\n' +
                          '!quote ("say something"): Let Bender entertain you!\n' +
