@@ -1,4 +1,4 @@
-Slackbot Bender
+Slackbot Bender [![Build Status](https://travis-ci.org/felixrieseberg/SlackbotBender.svg?branch=master)](https://travis-ci.org/felixrieseberg/SlackbotBender)
 ==============
 This is a simple, but easily extendable bot for the great chat app [Slack](http://www.slack.com).
 
