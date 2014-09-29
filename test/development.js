@@ -1,4 +1,5 @@
 /*jshint -W030 */
+/* This is needed for jshint to be okay with `should.be.ok` */
 
 var should      = require('should'),
     development = require('../integrations/development');
