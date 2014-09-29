@@ -15,11 +15,10 @@ yell = {
             font: 'block'            
         }, function(err, data) {
                 if (err) {
-                    debug('Figlet error! '+err+', '+data);
-                    return;
+                    return callback('Figlet error! ' + err + ', ' + data);
                 }
                 return callback(" \n" + data);
-        });    
+        }); 
     }
 
 };
