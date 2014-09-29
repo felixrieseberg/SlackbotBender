@@ -32,8 +32,7 @@ var finance = {
             var data = body.split('\r\n')[0].split(',').map(function (x) { return _s.trim(x, ' \t"'); }),
                 name = data.shift();
             if (data.every(function (x) { return x == 'N/A'; })) {
-                callback(badSymbol);
-                return;
+                return callback(phrases.say('finance_nosymbol'));
             }
 
             var ask = parseFloat(data[1]),

@@ -2,9 +2,8 @@ var phrases = require('../bot/phrases');
 
 var quotes = {
 
-    bender: function () {
-        var quote = phrases.quotes[Math.floor(Math.random() * phrases.quotes.length)];
-        return quote;
+    bender: function (reqText, callback) {
+        return callback(phrases.quotes[Math.floor(Math.random() * phrases.quotes.length)]);
     }
 
 };

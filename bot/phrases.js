@@ -49,7 +49,7 @@ var phrases = {
         'Don\'t worry, guys. I\'ll never be too good or too evil again. From now on, I\'ll just be me.'
     ],
 
-    finane_nosymbol: [
+    finance_nosymbol: [
         'That\'s not a symbol, ass-hat.'
     ],
 

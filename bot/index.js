@@ -49,7 +49,7 @@ function botify(req, res){
 
     // Development
     if (helpers.startsWithAny(reqText, triggers.development)) {
-        return development.getResponse(respond.bind(this, res));
+        return development.getResponse(reqText, respond.bind(this, res));
     }
 
     // Finance
@@ -59,12 +59,12 @@ function botify(req, res){
 
     // Help
     if (helpers.startsWithAny(reqText, triggers.help)) {
-        return help.sendHelp(respond.bind(this, res));
+        return help.sendHelp(reqText, respond.bind(this, res));
     }
 
     // Quotes
     if (helpers.startsWithAny(reqText, triggers.quotes)) {
-        return respond(res, quotes.bender());
+        return quotes.bender(reqText, respond.bind(this, res));
     }
 
     // Text

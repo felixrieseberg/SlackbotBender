@@ -49,7 +49,7 @@ var development = {
         ]
     }],
 
-    getResponse: function (callback) {
+    getResponse: function (reqText, callback) {
         return callback('Baby, be careful. Bender insides are HOT.', this.devPayload);
     }
 
