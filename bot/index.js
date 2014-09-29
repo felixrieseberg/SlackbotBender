@@ -83,7 +83,7 @@ function botify(req, res){
     }
 
     // Srsly, Guys
-    if (helpers.containsAny(reqText, triggers.srsly)) {
+    if (helpers.startsWithAny(reqText, triggers.srsly)) {
         return srsly.guys(reqText, req.body.bingApiKey, respond.bind(this, res));
     }
 
