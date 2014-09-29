@@ -1,3 +1,5 @@
+/*jshint -W030 */
+
 var should      = require('should'),
     development = require('../integrations/development');
 
@@ -35,7 +37,7 @@ describe('Development', function () {
         it('should return node version', function (done) {
             development.getResponse(null, function (data, attachments) {
                 attachments[0].fields[1].should.have.property('value');
-                attachments[0].fields[1]['value'].should.not.be.empty;
+                attachments[0].fields[1].value.should.not.be.empty;
                 done();
             });
         });
@@ -43,7 +45,7 @@ describe('Development', function () {
         it('should return memory usage', function (done) {
             development.getResponse(null, function (data, attachments) {
                 attachments[0].fields[4].should.have.property('value');
-                attachments[0].fields[4]['value'].should.not.be.empty;
+                attachments[0].fields[4].value.should.not.be.empty;
                 done();
             });
         });
@@ -51,7 +53,7 @@ describe('Development', function () {
         it('should return uptime', function (done) {
             development.getResponse(null, function (data, attachments) {
                 attachments[0].fields[5].should.have.property('value');
-                attachments[0].fields[5]['value'].should.endWith('seconds');
+                attachments[0].fields[5].value.should.endWith('seconds');
                 done();
             });
         });
