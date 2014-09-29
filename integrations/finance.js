@@ -1,35 +1,10 @@
-var _ = require('underscore'),
-    _s = require('underscore.string'),
-    util = require('util'),
-    request = require('request');
+var _       = require('underscore'),
+    _s      = require('underscore.string'),
+    util    = require('util'),
+    request = require('request'),
+    debug   = require('debug')('Finance'),
 
-function randMsg(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-}
-
-var upQuotes = [
-    "Bribe is such an ugly word. I prefer extortion. The X makes it sound cool.",
-    "I love this planet! I've got wealth, fame, and access to the depths of sleaze that those things bring.",
-    "You all go without me! I'm gonna take one last look around, you know, for, uh, stuff to steal!",
-    "Game's over, losers! I have all the money!! Compare your lives to mine and then kill yourselves!"
-];
-
-var downQuotes = [
-    "Let's face it, comedy's a dead art form. Tragedy, now that's funny.",
-    "Tempers are wearing thin. Let's hope some robot doesn't kill everybody.",
-    "This is the worst kind of discrimination. The kind against me!",
-    "Oh, so it's just coincidence that Zoidberg is desperately poor and miserably lonely? Please!",
-    "No! I want to live! There are still too many things I don't own!"
-];
-
-var noMovement = [
-    "What kind of party is this? There's no booze and only one hooker.",
-    "Don't worry, guys. I'll never be too good or too evil again. From now on, I'll just be me."
-];
-
-var failure = "Something's broken. Life can be hilariously cruel.";
-
-var badSymbol = "That's not a symbol, ass-hat.";
+    phrases = require('../bot/phrases');
 
 function coalesce() {
     for (var i = 0; i < arguments.length; i += 2) {
@@ -41,18 +16,17 @@ function coalesce() {
 var finance = {
 
     getResponse: function (query, callback) {
-
         var symbol = _s.trim(_s.strRight(query, 'ticker'));
         if (symbol.length > 10 || symbol.match(/\s/)) {
-            callback(badSymbol);
+            callback(phrases.say('finance_nosymbol'));
             return;
         }
-        var url = 'http://finance.yahoo.com/d/quotes.csv?s='+symbol+'&f=nabc1p2m8';
-        request.get(url, function(err, res, body) {
+
+        var url = 'http://finance.yahoo.com/d/quotes.csv?s=' + symbol + '&f=nabc1p2m8';
+        request.get(url, function (err, res, body) {
             if (err || res.statusCode !== 200) {
-                console.log("Yahoo finance error fetching "+url+': '+err+', '+res.statusCode);
-                callback(failure);
-                return;
+                debug('Yahoo finance error fetching ' + url + ': ' + err + ', ' + res.statusCode);
+                return callback(phrases.say('errors'));
             }
 
             var data = body.split('\r\n')[0].split(',').map(function (x) { return _s.trim(x, ' \t"'); }),
@@ -67,14 +41,18 @@ var finance = {
                 change = parseFloat(data[3]),
                 changePct = parseFloat(data[4]),
                 ma50ChangePct = parseFloat(data[5]);
-            var result = name + ' is at ' + coalesce(bid, 'bid', ask, 'ask') +' (' + coalesce(changePct, '%', ma50ChangePct, '% [50-day MA]') + ')';
+
+            var result = name + ' is at ' + coalesce(bid, 'bid', ask, 'ask');
+                result += ' (' + coalesce(changePct, '%', ma50ChangePct, '% [50-day MA]') + ')';
+
             if (ma50ChangePct > 10 || changePct > 2) {
-                result += ", " + randMsg(upQuotes);
+                result += ", " + phrases.say('finance_up');
             } else if (ma50ChangePct < -10 || changePct < -2) {
-                result += ", " + randMsg(downQuotes);
+                result += ", " + phrases.say('finance_down');
             } else {
-                result += ", " + randMsg(noMovement);
+                result += ", " + phrases.say('finance_nomovement');
             }
+
             return callback(result);
         });
     }

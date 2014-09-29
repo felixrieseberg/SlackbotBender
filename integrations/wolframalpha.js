@@ -1,11 +1,11 @@
-var _ = require('underscore'),
-    _s = require('underscore.string'),
-    util = require('util'),
-    request = require('request'),
-    xmldoc = require('xmldoc'),
+var _           = require('underscore'),
+    _s          = require('underscore.string'),
+    util        = require('util'),
+    request     = require('request'),
+    xmldoc      = require('xmldoc'),
 
-    config = require('../config'),
-    phrases = require('../bot/phrases'),
+    config      = require('../config'),
+    phrases     = require('../bot/phrases'),
     wolframalpha;
 
 wolframalpha = {
