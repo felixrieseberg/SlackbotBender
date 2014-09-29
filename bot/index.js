@@ -84,7 +84,7 @@ function botify(req, res){
 
     // Srsly, Guys
     if (helpers.startsWithAny(reqText, triggers.srsly)) {
-        return respond(res, srsly.guys(reqText));
+        return srsly.guys(reqText, req.body.bingApiKey, respond.bind(this, res));
     }
 
     // Timezones
