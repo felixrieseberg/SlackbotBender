@@ -15,9 +15,12 @@ of a string.
 - Debug Info
 - Yahoo Finance
 - Bender Quotes
-- Twilio (Text Messages)
-- Wolfram Alpha (experimental)
+- Help
+- Text Messaging (using Twilio)
 - Yelling (repeats text in fancy ASCII art)
+- Timezones (using Wolfram Alpha)
+- Memes (experimental)
+- Wolfram Alpha (experimental)
 
 ## License
 The MIT License (MIT)
