@@ -17,7 +17,7 @@ yell = {
                 if (err) {
                     return callback('Figlet error! ' + err + ', ' + data);
                 }
-                return callback(" \n" + data);
+                return callback("```\n" + data + '```');
         }); 
     }
 
