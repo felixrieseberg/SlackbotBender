@@ -24,7 +24,8 @@
     "twilio": "^1.7.0",
     "underscore": "^1.7.0",
     "underscore.string": "^2.3.3",
-    "xmldoc": "^0.1.2"
+    "xmldoc": "^0.1.2",
+    "vso-client": "^0.1.12"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
