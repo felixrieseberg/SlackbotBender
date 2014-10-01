@@ -12,7 +12,7 @@ yell = {
         query = _s.strRight(query, 'yell');
 
         figlet.text(query, {
-            font: 'block'            
+            font: 'bloody'            
         }, function(err, data) {
                 if (err) {
                     return callback('Figlet error! ' + err + ', ' + data);
