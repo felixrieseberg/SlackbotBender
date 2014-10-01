@@ -76,6 +76,26 @@ var triggers = {
         'ask wolfram'
     ],
 
+    vso_teams: [
+        '!vso teams',
+        'vso teams',
+        'Show me our VSO teams',
+        'Show me our Visual Studio teams',
+        'What are our vso teams',
+        'our vso teams',
+        'let\'s see the vso teams'
+    ],
+
+    vso_repos: [
+        '!vso repos',
+        'vso repos',
+        'Show me our VSO repos',
+        'Show me our Visual Studio repos',
+        'What are our vso repos',
+        'our vso repos',
+        'let\'s see the vso repos'
+    ],
+
     yell: [
         '!yell',
         'yell'

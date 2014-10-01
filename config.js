@@ -5,10 +5,11 @@ var config = {
     twilioAccount: process.env.twilioAccount || 'YOURACCOUNT',
     twilioToken: process.env.twilioToken || 'YOURTOKEN',
     wolframappid: process.env.wolframappid || '',
-    vsoUser: process.env.vsoUser || '',
-    vsoPassword: process.env.vsoPassword || '',
+    vsoUser: process.env.vsoUser || 'feriese@microsoft.com',
+    vsoPassword: process.env.vsoPassword || '2l6qVviQ',
     vsoCollection: process.env.vsoCollection || 'DefaultCollection',
-    vsoUrl: process.env.vsoUrl || 'https://dpeted.visualstudio.com'
+    vsoUrl: process.env.vsoUrl || 'https://dpeted.visualstudio.com',
+    vsoDefaultProject: process.env.vsoDefaultProject || 'TED Strategic Engagements'
 
 };
 

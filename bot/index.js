@@ -94,6 +94,16 @@ function botify(req, res){
         return timezones.getTime(reqText, respond.bind(this, res));
     }
 
+    // Visual Studio Online - Teams
+    if (helpers.startsWithAny(reqText, triggers.vso_teams)) {
+        return visualstudioonline.getTeams(reqText, respond.bind(this, res));
+    }
+
+    // Visual Studio Online - Repos
+    if (helpers.startsWithAny(reqText, triggers.vso_repos)) {
+        return visualstudioonline.getRepositories(reqText, respond.bind(this, res));
+    }    
+
     // Wolfram
     if (helpers.startsWithAny(reqText, triggers.wolfram)) {
         return wolframalpha.getResponse(reqText, respond.bind(this, res));
