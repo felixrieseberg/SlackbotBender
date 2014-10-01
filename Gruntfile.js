@@ -28,6 +28,11 @@ module.exports = function(grunt) {
                 DIR_FOR_CODE_COVERAGE: '../coverage/instrument/'
             }
         },
+        clean: {
+            coverage: {
+                src: [ 'coverage/instrument' ]
+            }
+        },
         instrument: {
             files: ['app.js', 'bot/**/*.js', 'integrations/**/*.js', 'test/**/*.js' ],
             options: {
@@ -50,12 +55,13 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-simple-mocha');
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-istanbul');
 
-    grunt.registerTask('coverage', ['instrument', 'simplemocha:coverage', 'storeCoverage', 'makeReport']);
+    grunt.registerTask('coverage', ['clean:coverage', 'instrument', 'simplemocha:coverage', 'storeCoverage', 'makeReport']);
     grunt.registerTask('test', ['simplemocha:all']);
     grunt.registerTask('build', ['jshint', 'test']);
 

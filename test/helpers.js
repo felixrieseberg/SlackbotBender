@@ -33,5 +33,11 @@ describe('Helpers', function () {
             done();
         });
 
+        it('should return match when asked', function (done) {
+            var result = helpers.startsWithAny('string with a match', [ 'not here', 'nor here', 'string with'], true);
+            result.should.eql('string with');
+            done();
+        });
+
     });
 });

@@ -17,6 +17,14 @@ var helpers = {
             }
         }
         return false;
+    },
+
+    strRight: function(str, items) {
+        var ret = str;
+        for (var i in items) {
+            ret = _s.strRight(ret, items[i]);
+        }
+        return ret;
     }
 };
 
