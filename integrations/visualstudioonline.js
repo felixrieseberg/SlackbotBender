@@ -1,13 +1,13 @@
 var _           = require('underscore'),
     _s          = require('underscore.string'),
-    vso         = require('vso-client'),
+    vsolib      = require('vso-client'),
     debug       = require('debug')('VisualStudioOnline'),
-    Promise     = require('bluebird'),
+    bluebird    = require('bluebird'),
 
     config      = require('../config'),
-    client      = vso.createClient(config.vsoUrl, config.vsoCollection, config.vsoUser, config.vsoPassword);
+    client      = vsolib.createClient(config.vsoUrl, config.vsoCollection, config.vsoUser, config.vsoPassword);
 
-Promise.promisifyAll(client);
+bluebird.promisifyAll(client);
 
 var vso = {
 
@@ -26,8 +26,8 @@ var vso = {
                     'title': repo.name,
                     'value': 'Default Branch: ' + repo.defaultBranch + '\nRemote URL:' + repo.remoteUrl,
                     'short': false
-                })
-            })
+                });
+            });
 
             result = [{
                 'fallback': 'Seriously dude, if you want to see the repos, do it on a client that supports fancy and long messages.',
@@ -54,8 +54,8 @@ var vso = {
                     'title': team.name,
                     'value': team.description,
                     'short': false
-                })
-            })
+                });
+            });
 
             result = [{
                 'fallback': 'Seriously dude, if you want to see the teams list, do it on a client that supports fancy and long messages.',

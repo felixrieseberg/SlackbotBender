@@ -58,7 +58,11 @@ var triggers = {
 
     srsly: [
         '!srsly',
-        'srsly'
+        'srsly',
+        '!orly',
+        'orly',
+        '!wut',
+        'wut'
     ],
 
     timezones: [

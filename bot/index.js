@@ -40,8 +40,7 @@ function respond(res, text, attachments) {
 function botify(req, res){
 
     var reqText = req.query.text || req.body.text || null;
-        // until I can figure out how to make '(b|B)ender: ' or equivalent work.
-        reqText = _s.strRight(_s.strRight(_s.clean(reqText), 'Bender: '), 'bender: ');
+        reqText = reqText ? _s.strRight(_s.clean(reqText.toLowerCase()), 'bender: ') : reqText;
 
     debug('Request received: ' + reqText);
 
