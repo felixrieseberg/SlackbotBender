@@ -62,7 +62,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-istanbul');
 
     grunt.registerTask('coverage', ['clean:coverage', 'instrument', 'simplemocha:coverage', 'storeCoverage', 'makeReport']);
-    grunt.registerTask('test', ['simplemocha:all']);
+    grunt.registerTask('test', ['jshint', 'simplemocha:all']);
     grunt.registerTask('build', ['jshint', 'test']);
 
     grunt.registerTask('default', ['jshint', 'coverage']);

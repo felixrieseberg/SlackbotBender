@@ -1,14 +1,14 @@
-var _ = require('underscore'),
-    _s = require('underscore.string'),
-    bing = require('node-bing-api'),
-    helpers = require('../bot/helpers'),
-    triggers = require('../bot/triggers');
+var _         = require('underscore'),
+    _s        = require('underscore.string'),
+    bing      = require('node-bing-api'),
+    debug     = require('debug')('srslyGuys'),
 
-var noApiKey = "No data without the key, meatbag.";
+    helpers   = require('../bot/helpers'),
+    triggers  = require('../bot/triggers');
 
-var callFailure = "Apparently, Bing hates you as much as I do.";
-
-var noData = "You can't even search for things correctly, idiot.";
+var noApiKey  = 'No data without the key, meatbag.',
+    callFailure = 'Apparently, Bing hates you as much as I do.',
+    noData = 'You can\'t even search for things correctly, idiot.';
 
 var srslyGuys = {
 
@@ -38,9 +38,8 @@ var srslyGuys = {
                 break;
         }
         bingClient.images(adjustedQ, function (err, res, body) {
-            debugger;
             if (err || res.statusCode != 200) {
-               console.log('Failed call for '+adjustedQ+': '+err+', status='+res.statusCode);
+               debug('Failed call for '+adjustedQ+': '+err+', status='+res.statusCode);
                callback(callFailure);
                return;
             }
@@ -52,7 +51,6 @@ var srslyGuys = {
 
             for (var idx in body.d.results) {
                var result = body.d.results[idx];
-                debugger;
                if (predicate(result)) {
                    callback(result.MediaUrl);
                    return;
