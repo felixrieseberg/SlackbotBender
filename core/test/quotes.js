@@ -2,7 +2,7 @@
 /* This is needed for jshint to be okay with `should.be.ok` */
 
 var should      = require('should'),
-    quotes      = require('../integrations/quotes');
+    quotes      = require('../bot/integrations/quotes');
 
 describe('Quotes', function () {
     describe('#bender()', function () {

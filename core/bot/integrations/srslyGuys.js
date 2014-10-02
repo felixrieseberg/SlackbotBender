@@ -3,8 +3,8 @@ var _         = require('underscore'),
     bing      = require('node-bing-api'),
     debug     = require('debug')('srslyGuys'),
 
-    helpers   = require('../bot/helpers'),
-    triggers  = require('../bot/triggers');
+    helpers   = require('../helpers'),
+    triggers  = require('../triggers');
 
 var noApiKey  = 'No data without the key, meatbag.',
     callFailure = 'Apparently, Bing hates you as much as I do.',

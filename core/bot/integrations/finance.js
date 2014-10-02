@@ -4,7 +4,7 @@ var _       = require('underscore'),
     request = require('request'),
     debug   = require('debug')('Finance'),
 
-    phrases = require('../bot/phrases');
+    phrases = require('../phrases');
 
 function coalesce() {
     for (var i = 0; i < arguments.length; i += 2) {

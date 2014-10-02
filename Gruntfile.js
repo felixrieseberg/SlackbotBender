@@ -8,12 +8,12 @@ module.exports = function(grunt) {
                 ui: 'bdd',
                 reporter: 'list'
             },
-            all: { src: ['test/**/*.js'] },
+            all: { src: ['core/test/**/*.js'] },
             coverage: { src: ['coverage/instrument/test/**/*.js' ] }
         },
 
         jshint: {
-            all: [ 'Gruntfile.js', 'bot/**/*.js', 'integrations/**/*.js', 'test/**/*.js']
+            all: [ 'Gruntfile.js', 'core/**/*.js']
         },
 
         jsdoc: {
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 
         env: {
             coverage: {
-                DIR_FOR_CODE_COVERAGE: '../coverage/instrument/'
+                DIR_FOR_CODE_COVERAGE: '../core/coverage/instrument/'
             }
         },
         clean: {
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
             }
         },
         instrument: {
-            files: ['app.js', 'bot/**/*.js', 'integrations/**/*.js', 'test/**/*.js' ],
+            files: ['app.js', 'core/bot/**/*.js', 'core/integrations/**/*.js', 'core/test/**/*.js' ],
             options: {
                 lazy: true,
                 basePath: 'coverage/instrument/'

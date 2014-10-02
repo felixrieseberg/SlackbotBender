@@ -4,7 +4,7 @@ var _           = require('underscore'),
     debug       = require('debug')('VisualStudioOnline'),
     bluebird    = require('bluebird'),
 
-    config      = require('../config'),
+    config      = require('../../../config'),
     client      = vsolib.createClient(config.vsoUrl, config.vsoCollection, config.vsoUser, config.vsoPassword);
 
 bluebird.promisifyAll(client);

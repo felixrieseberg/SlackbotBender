@@ -2,11 +2,12 @@
 /* This is needed for jshint to be okay with `should.be.ok` */
 
 var should  = require('should'),
-    finance = require('../integrations/finance');
+    finance = require('../bot/integrations/finance');
 
 describe('Finance', function(){
     describe('#getResponse()', function(){
         it('should never show NaN', function(done){
+            this.timeout(5000);
             finance.getResponse('ticker rsh', function(data)
             {
                 data.should.not.match(/NaN/);
@@ -15,6 +16,7 @@ describe('Finance', function(){
         });
 
         it('should tolerate bad input', function(done){
+            this.timeout(5000);
             finance.getResponse('ticker no symbol here', function(data)
             {
                 data.should.match(/not a symbol/);
@@ -23,6 +25,7 @@ describe('Finance', function(){
         });
 
         it('should tolerate non-existent symbols', function(done){
+            this.timeout(5000);
             finance.getResponse('ticker nostock', function(data)
             {
                 data.should.match(/not a symbol/);

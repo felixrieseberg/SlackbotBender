@@ -4,8 +4,8 @@ var twilio      = require('twilio'),
     _s          = require('underscore.string'),
     debug       = require('debug')('Twilio Phonetext'),
 
-    phrases     = require('../bot/phrases'),
-    config      = require('../config'),
+    phrases     = require('../phrases'),
+    config      = require('../../../config'),
     storage     = require('node-persist'),
     twilio      = new twilio.RestClient(config.twilioAccount, config.twilioToken),
     phonetext;

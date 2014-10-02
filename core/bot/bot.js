@@ -1,33 +1,32 @@
 var express             = require('express'),
     router              = express.Router(),
-    hook            = require('slackhook'),
     util                = require('util'),
     _s                  = require('underscore.string'),
-    debug               = require('debug')('Bender'),
+    debug               = require('debug')('Botify'),
 
     helpers             = require('./helpers'),
     triggers            = require('./triggers'),
 
     // Integrations & Tricks
-    development         = require('../integrations/development'),
-    finance             = require('../integrations/finance'),
-    help                = require('../integrations/help'),
-    quotes              = require('../integrations/quotes'),
-    phonetext           = require('../integrations/phonetext'),
-    srsly               = require('../integrations/srslyGuys'),
-    timezones           = require('../integrations/timezones'),
-    wolframalpha        = require('../integrations/wolframalpha'),
-    visualstudioonline  = require('../integrations/visualstudioonline'),
-    yell                = require('../integrations/yell');
+    development         = require('./integrations/development'),
+    finance             = require('./integrations/finance'),
+    help                = require('./integrations/help'),
+    quotes              = require('./integrations/quotes'),
+    phonetext           = require('./integrations/phonetext'),
+    srsly               = require('./integrations/srslyGuys'),
+    timezones           = require('./integrations/timezones'),
+    wolframalpha        = require('./integrations/wolframalpha'),
+    visualstudioonline  = require('./integrations/visualstudioonline'),
+    yell                = require('./integrations/yell');
 
-function authorize(req, res, next) {
+function authorize (req, res, next) {
     if (process.env.slacktoken && process.env.slacktoken !== req.body.token) {
         return res.status(401).send('Not authorized');
     }
     return next();
 }
 
-function respond(res, text, attachments) {
+function respond (res, text, attachments) {
     attachments = attachments || [];
 
     res.json({
@@ -37,7 +36,7 @@ function respond(res, text, attachments) {
     });
 }
 
-function botify(req, res){
+function botify (req, res){
 
     var reqText = req.query.text || req.body.text || null;
         reqText = reqText ? _s.strRight(_s.clean(reqText.toLowerCase()), 'bender: ') : reqText;

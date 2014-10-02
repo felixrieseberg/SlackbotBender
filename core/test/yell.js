@@ -2,7 +2,7 @@
 /* This is needed for jshint to be okay with `should.be.ok` */
 
 var should  = require('should'),
-    yell    = require('../integrations/yell');
+    yell    = require('../bot/integrations/yell');
 
 describe('Yell', function(){
     describe('#getResponse()', function(){

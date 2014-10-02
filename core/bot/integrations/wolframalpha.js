@@ -4,8 +4,8 @@ var _           = require('underscore'),
     request     = require('request'),
     xmldoc      = require('xmldoc'),
 
-    config      = require('../config'),
-    phrases     = require('../bot/phrases'),
+    config      = require('../../../config'),
+    phrases     = require('../phrases'),
     wolframalpha;
 
 wolframalpha = {

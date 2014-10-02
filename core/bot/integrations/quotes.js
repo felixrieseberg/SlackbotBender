@@ -1,4 +1,4 @@
-var phrases = require('../bot/phrases');
+var phrases = require('../phrases');
 
 var quotes = {
 
