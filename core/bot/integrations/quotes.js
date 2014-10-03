@@ -1,9 +1,10 @@
-var phrases = require('../phrases');
+var phrases = require('../phrases'),
+    helpers = require('../helpers');
 
 var quotes = {
 
     bender: function (reqText, callback) {
-        return callback(phrases.quotes[Math.floor(Math.random() * phrases.quotes.length)]);
+        return callback(helpers.randElt(phrases.quotes));
     }
 
 };

@@ -1,9 +1,21 @@
+var helpers = require('./helpers');
+
 var phrases = {
+
+    curses: [
+        'Come on, {0}, you big, mostly empty wuss! Give me all the juice you got!',
+        'Hey {0}, wanna kill all humans?',
+        '{0}, Bite my shiny metal ass!',
+        'Hey, I got a busted ass here {0}, I don\'t see anyone kissing it!',
+        '{0}?  Because he\'s a loser, that\'s why. He\'s the lobster equivalent of Fry.',
+        'Stupid anti-pimping laws. Well, pay the man, {0}!'
+    ],
 
     // Quotes
     quotes: [
         'Have you ever thought about turning off the TV, sitting down with your children, and hitting them?',
         'Hey baby, wanna kill all humans?',
+        'Cut the waterworks, hippie!',
         'Stupid can opener! You killed my father, and now you\'ve come back for me!',
         'I support and oppose many things, but not strongly enough to pick up a pen.',
         'Here\'s your Guttenberg Bible, masters, plus the Colonel\'s secret recipe: \'Chicken, grease, salt\'.',
@@ -19,7 +31,6 @@ var phrases = {
         'Oh, no room for Bender, huh? Fine! I\'ll go build my own lunar lander, with blackjack and hookers. In fact, forget the lunar lander and the blackjack. Ahh, screw the whole thing!',
         'What do you mean \'we\', mammal?',
         'Hey, look what I won off some tourist\'s pocket.',
-        'Bite my shiny metal ass!',
         '[singing] Fry crack corn, and I don\'t care / Leela crack corn, I still don\'t care / Bender crack corn, and he is great / Take that, you stupid corn!',
         'I was a hero to broken robots \'cause I was one of them, but how can I sing about being damaged if I\'m not? That\'s like Christina Aguilera singing Spanish. Ooh, wait! That\'s it! I\'ll fake it!',
         'Hey, the blues. The tragic sound of other people\'s suffering. That\'s kind of a pick-me-up.',
@@ -75,7 +86,7 @@ var phrases = {
     ],
 
     say: function (type) {
-        return this[type][Math.floor(Math.random() * this[type].length)];
+        return helpers.randElt(this[type]);
     }
 
 };

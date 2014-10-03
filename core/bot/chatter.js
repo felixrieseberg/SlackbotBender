@@ -7,6 +7,7 @@ var util                = require('util'),
     triggers            = require('./triggers'),
 
 // Integrations & Tricks
+    cursing             = require('./integrations/cursing'),
     quotes              = require('./integrations/quotes'),
     srsly               = require('./integrations/srslyGuys'),
     wolframalpha        = require('./integrations/wolframalpha'),
@@ -18,19 +19,15 @@ function respond (text, attachments) {
     var payload = {
         text: text,
         username: 'Bender',
-        attachments: attachments,
-        channel: "#riskyclick"
+        attachments: attachments
     };
 
     var targetUri = process.env.randomChannelWebhookUri;
-    if (targetUri) {
-        debug('Sending payload: ' + JSON.stringify(payload));
+    if (false) {
         request.post({ 'uri': targetUri, 'json': payload }, function (err, res, body) {
             if (err || res.statusCode != 200) {
                 var status = res ? res.statusCode : 'unknown';
                 console.log('Error '+err+', '+status+' sending payload: ' + JSON.stringify(payload));
-            } else {
-                debug('Payload sent.');
             }
         });
     } else {
@@ -65,7 +62,9 @@ var randomYell = [
 
 function generateReqText() {
     var rand = Math.random();
-    if (rand < 0.6) {
+    if (rand < 1.0) {
+        return triggers.curses[0];
+    } else if (rand < 0.6) {
         return triggers.quotes[0];
     } else if (rand < 0.8) {
         return helpers.randElt(triggers.srsly) + ' ' + helpers.randElt(randomMemes);
@@ -77,9 +76,19 @@ function generateReqText() {
 }
 
 function chatter () {
+    var probToChatter = process.env.chanceToChatter ? parseFloat(process.env.chanceToChatter) : 0.5;
+    if (Math.random() > probToChatter) {
+        debug('Not chattering');
+        return;
+    }
+
     var reqText = generateReqText();
 
     debug('Generated ' + reqText);
+
+    if (helpers.startsWithAny(reqText, triggers.curses)) {
+        return cursing.bender(reqText, respond);
+    }
 
     // Quotes
     if (helpers.startsWithAny(reqText, triggers.quotes)) {
