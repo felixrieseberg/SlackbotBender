@@ -12,15 +12,19 @@ var fonts = [];
 yell = {
 
     render: function (query, callback) {
-        figlet.text(query, {
-            font: helpers.randElt(fonts)
-        }, function (err, data) {
-            if (err) {
-                console.warn('Figlet error! ' + err + ', ' + data);
-                return callback(phrases.say('errors'));
-            }
-            return callback("```\n" + data + '```');
-        });
+        if (query == 'fontlist') {
+            return callback(fonts.join(",\n "));
+        } else {
+            figlet.text(query, {
+                font: helpers.randElt(fonts)
+            }, function (err, data) {
+                if (err) {
+                    console.warn('Figlet error! ' + err + ', ' + data);
+                    return callback(phrases.say('errors'));
+                }
+                return callback("```\n" + data + '```');
+            });
+        }
     },
 
     getResponse: function (query, callback) {
