@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 reporter: 'list'
             },
             all: { src: ['core/test/**/*.js'] },
-            coverage: { src: ['coverage/instrument/test/**/*.js' ] }
+            coverage: { src: ['coverage/instrument/core/test/**/*.js' ] }
         },
 
         jshint: {
@@ -18,14 +18,14 @@ module.exports = function(grunt) {
 
         jsdoc: {
             all: {
-                src: ['*.js', 'test/**/*.js'],
+                src: ['*.js', 'core/**/*.js'],
                 dest: 'doc'
             }
         },
 
         env: {
             coverage: {
-                DIR_FOR_CODE_COVERAGE: '../core/coverage/instrument/'
+                DIR_FOR_CODE_COVERAGE: '../../coverage/instrument/'
             }
         },
         clean: {
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-istanbul');
 
-    grunt.registerTask('coverage', ['clean:coverage', 'instrument', 'simplemocha:coverage', 'storeCoverage', 'makeReport']);
+    grunt.registerTask('coverage', ['instrument', 'simplemocha:coverage', 'storeCoverage', 'makeReport']);
     grunt.registerTask('test', ['jshint', 'simplemocha:all']);
     grunt.registerTask('build', ['jshint', 'test']);
 

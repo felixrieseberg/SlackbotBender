@@ -13,7 +13,7 @@ var noApiKey  = 'No data without the key, meatbag.',
 var srslyGuys = {
 
     guys: function (query, key, callback) {
-        if (!key && !process.env.BING_API_KEY) {
+        if (!key && !process.env.bingApiKey) {
             callback(noApiKey);
             return;
         }
@@ -21,7 +21,7 @@ var srslyGuys = {
         var cmd = _s.ltrim(helpers.startsWithAny(query, triggers.srsly, true), '!');
         var q = _s.trim(helpers.strRight(query, triggers.srsly));
 
-        var bingClient = bing({ accKey: key || process.env.BING_API_KEY });
+        var bingClient = bing({ accKey: key || process.env.bingApiKey });
         var adjustedQ = q;
         var predicate = function (result) { return true; };
         switch (cmd) {
