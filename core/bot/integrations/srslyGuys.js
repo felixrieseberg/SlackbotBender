@@ -4,17 +4,14 @@ var _         = require('underscore'),
     debug     = require('debug')('srslyGuys'),
 
     helpers   = require('../helpers'),
+    phrases   = require('../phrases'),
     triggers  = require('../triggers');
-
-var noApiKey  = 'No data without the key, meatbag.',
-    callFailure = 'Apparently, Bing hates you as much as I do.',
-    noData = 'You can\'t even search for things correctly, idiot.';
 
 var srslyGuys = {
 
     guys: function (query, key, callback) {
         if (!key && !process.env.bingApiKey) {
-            callback(noApiKey);
+            callback(helpers.randElt(phrases.missingKey));
             return;
         }
 
@@ -37,16 +34,17 @@ var srslyGuys = {
             case 'wut':
                 break;
         }
+
         bingClient.images(adjustedQ, function (err, res, body) {
             if (err || res.statusCode != 200) {
                var status = res ? res.statusCode : 'unknown';
                debug('Failed call for '+adjustedQ+': '+err+', status='+status);
-               callback(callFailure);
+               callback(phrases.say('errors'));
                return;
             }
 
             if (!body || !body.d || !body.d.results) {
-               callback(noData);
+               callback(phrases.say('noresult'));
                return;
             }
 
@@ -57,7 +55,7 @@ var srslyGuys = {
                return;
             }
 
-            callback(noData);
+            callback(phrases.say('noresult'));
             return;
         });
     }

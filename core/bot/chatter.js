@@ -23,7 +23,7 @@ function respond (text, attachments) {
     };
 
     var targetUri = process.env.randomChannelWebhookUri;
-    if (false) {
+    if (targetUri) {
         request.post({ 'uri': targetUri, 'json': payload }, function (err, res, body) {
             if (err || res.statusCode != 200) {
                 var status = res ? res.statusCode : 'unknown';
