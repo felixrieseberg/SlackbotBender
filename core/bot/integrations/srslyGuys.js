@@ -50,12 +50,11 @@ var srslyGuys = {
                return;
             }
 
-            for (var idx in body.d.results) {
-               var result = body.d.results[idx];
-               if (predicate(result)) {
-                   callback(result.MediaUrl);
-                   return;
-               }
+            var validResults = body.d.results.filter(predicate);
+            if (validResults) {
+               var randomResult = helpers.randElt(validResults);
+               callback(randomResult.MediaUrl);
+               return;
             }
 
             callback(noData);
