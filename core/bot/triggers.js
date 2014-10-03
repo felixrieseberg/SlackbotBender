@@ -26,6 +26,11 @@ var triggers = {
         'show commands'
     ],
 
+    curses: [
+        '!curse',
+        'curse'
+    ],
+
     quotes: [
         '!quote',
         'say something',
