@@ -25,6 +25,10 @@ var helpers = {
             ret = _s.strRight(ret, items[i]);
         }
         return ret;
+    },
+
+    randElt: function(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
     }
 };
 
