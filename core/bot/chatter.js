@@ -22,10 +22,15 @@ function respond (text, attachments) {
         channel: "#riskyclick"
     };
 
-    if (process.env.randomChannelWebhookUri) {
-        request.post({ 'uri': process.env.randomChannelWebhookUri, 'json': payload }, function (err, res, body) {
+    var targetUri = process.env.randomChannelWebhookUri;
+    if (targetUri) {
+        debug('Sending payload: ' + JSON.stringify(payload));
+        request.post({ 'uri': targetUri, 'json': payload }, function (err, res, body) {
             if (err || res.statusCode != 200) {
-                console.log('Error sending payload: ' + JSON.stringify(payload));
+                var status = res ? res.statusCode : 'unknown';
+                console.log('Error '+err+', '+status+' sending payload: ' + JSON.stringify(payload));
+            } else {
+                debug('Payload sent.');
             }
         });
     } else {
@@ -33,15 +38,28 @@ function respond (text, attachments) {
     }
 }
 
-var randomPhrases = [
+var randomMemes = [
     'overly attached girlfriend',
+    'hipster cat',
+    'sudden clarity clarence',
+    'lame pun coon',
+    'confession bear',
+    'awkward penguin',
+    'bad luck brian'
+];
+
+var randomSearchPhrases = [
     'negative entropy',
     'bender',
-    'marklar'
+    'marklar',
+    'elephant',
+    'cartman',
+    'speed of african swallow'
 ];
 
 var randomYell = [
     'Shut yo mouth!',
+    // http://lyrics.wikia.com/Bootsy_Collins:P-Funk_(Wants_To_Get_Funked_Up)
     "Y'all should dig my sunroof top!"
 ];
 
@@ -50,9 +68,9 @@ function generateReqText() {
     if (rand < 0.6) {
         return triggers.quotes[0];
     } else if (rand < 0.8) {
-        return helpers.randElt(triggers.srsly) + ' ' + helpers.randElt(randomPhrases);
+        return helpers.randElt(triggers.srsly) + ' ' + helpers.randElt(randomMemes);
     } else if (rand < 0.9) {
-        return triggers.wolfram[0] + ' ' + helpers.randElt(randomPhrases);
+        return triggers.wolfram[0] + ' ' + helpers.randElt(randomSearchPhrases);
     } else {
         return triggers.yell[0] + ' ' + helpers.randElt(randomYell);
     }

@@ -10,7 +10,7 @@ var server = app.listen(app.get('port'), function() {
   debug('Bender the Robot is slightly drunk and listening on port ' + server.address().port);
 });
 
-new CronJob('0 7,41 * * * *', function () {
+new CronJob('30 1,37 * * * *', function () {
     debug('Calling chatter');
     chatter();
 }, null, true);
