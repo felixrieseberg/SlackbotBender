@@ -8,12 +8,14 @@ var _       = require('underscore'),
     yell;
 
 var fonts = [];
-
-yell = {
-
-    render: function (query, callback) {
+function render(query, callback) {
+    var font = helpers.randElt(fonts);
+    debug('Yelling ['+query+'] in '+font);
+    if (query == 'fontlist') {
+        return callback(fonts.length + ' Fonts: '+fonts.join(",\n "));
+    } else {
         figlet.text(query, {
-            font: helpers.randElt(fonts)
+            font: font
         }, function (err, data) {
             if (err) {
                 console.warn('Figlet error! ' + err + ', ' + data);
@@ -21,19 +23,26 @@ yell = {
             }
             return callback("```\n" + data + '```');
         });
-    },
+    }
+}
+
+yell = {
 
     getResponse: function (query, callback) {
 
-        query = _s.strRight(query, 'yell');
+        query = _s.trim(_s.strRight(query, 'yell'));
 
-        if (!fonts) {
+        if (!fonts || fonts.length === 0) {
             figlet.fonts(function (err, fontList) {
-                fonts = fontList;
-                return this.render(query, callback);
+                if (err) {
+                    console.log('Failed getting font-list: '+err);
+                } else {
+                    fonts = fontList;
+                }
+                return render(query, callback);
             });
         } else {
-            return this.render(query, callback);
+            return render(query, callback);
         }
     }
 
