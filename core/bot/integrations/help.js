@@ -17,7 +17,8 @@ var help = {
                          '!wolfram ("ask wolfram", "check wolfram"): Queries Wolfram Alpha for a given query.\n' +
                          '!vso teams ("Show me our VSO teams"): Lists our Visual Studio Online teams.\n' +
                          '!vso repos ("Show me our VSO repos"): Lists our Visual Studio Online Git repositories.\n' +
-                         '!yell ("yell"): Bender will yell stuff for you.',
+                         '!yell ("yell"): Bender will yell stuff for you.\n' +
+                         '!curse [user|someone]: Have bender vent his spleen on a colleague.\n',
                 'short': false 
             }
         ]

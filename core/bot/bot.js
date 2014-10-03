@@ -8,6 +8,7 @@ var express             = require('express'),
     triggers            = require('./triggers'),
 
     // Integrations & Tricks
+    cursing             = require('./integrations/cursing'),
     development         = require('./integrations/development'),
     finance             = require('./integrations/finance'),
     help                = require('./integrations/help'),
@@ -45,6 +46,11 @@ function botify (req, res){
 
     if (!reqText) {
         return respond(res, 'Yo, you didn\'t even ask for anything. Gimme a command!');
+    }
+
+    // Cursing
+    if (helpers.startsWithAny(reqText, triggers.curses)) {
+        return cursing.bender(reqText, respond.bind(this, res));
     }
 
     // Development
