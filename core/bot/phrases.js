@@ -67,7 +67,8 @@ var phrases = {
     // Various
     noresult: [
         'Have you ever thought about turning off the TV, sitting down with your children, and hitting them?',
-        'Hey baby, Wanna kill all humans?'
+        'Hey baby, Wanna kill all humans?',
+        'You can\'t even search for things correctly, idiot.'
     ],
 
     errors: [
@@ -81,8 +82,11 @@ var phrases = {
     ],
 
     wolfram: [
-        'I asked Wolfram Alpha and got this back: ',
-        
+        'I asked Wolfram Alpha and got this back: '
+    ],
+
+    missingKey: [
+        'No data without the key, meatbag.'
     ],
 
     say: function (type) {
