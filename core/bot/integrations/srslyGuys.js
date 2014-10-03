@@ -39,7 +39,8 @@ var srslyGuys = {
         }
         bingClient.images(adjustedQ, function (err, res, body) {
             if (err || res.statusCode != 200) {
-               debug('Failed call for '+adjustedQ+': '+err+', status='+res.statusCode);
+               var status = res ? res.statusCode : 'unknown';
+               debug('Failed call for '+adjustedQ+': '+err+', status='+status);
                callback(callFailure);
                return;
             }
