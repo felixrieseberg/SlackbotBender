@@ -21,7 +21,7 @@ var srslyGuys = {
         var cmd = _s.ltrim(helpers.startsWithAny(query, triggers.srsly, true), '!');
         var q = _s.trim(helpers.strRight(query, triggers.srsly));
 
-        var bingClient = bing({ accKey: key || process.env.bingApiKey });
+        var bingClient = bing({ accKey: key || process.env.bingApiKey, additionalUriParams: "Market='en-us'&$top=20" });
         var adjustedQ = q;
         var predicate = function (result) { return true; };
         switch (cmd) {
