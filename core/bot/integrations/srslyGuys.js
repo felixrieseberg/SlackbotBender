@@ -34,16 +34,17 @@ var srslyGuys = {
             case 'wut':
                 break;
         }
+
         bingClient.images(adjustedQ, function (err, res, body) {
             if (err || res.statusCode != 200) {
                var status = res ? res.statusCode : 'unknown';
                debug('Failed call for '+adjustedQ+': '+err+', status='+status);
-               callback(helpers.randElt(phrases.errors));
+               callback(phrases.say('errors'));
                return;
             }
 
             if (!body || !body.d || !body.d.results) {
-               callback(helpers.randElt(phrases.noresult));
+               callback(phrases.say('noresult'));
                return;
             }
 
@@ -54,7 +55,7 @@ var srslyGuys = {
                return;
             }
 
-            callback(helpers.randElt(phrases.noresult));
+            callback(phrases.say('noresult'));
             return;
         });
     }
