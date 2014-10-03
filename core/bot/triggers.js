@@ -18,6 +18,7 @@ var triggers = {
     ],
 
     help: [
+        'help',
         '!help',
         '--help',
         '-help',
