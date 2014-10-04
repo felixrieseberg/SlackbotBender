@@ -7,6 +7,14 @@ var _         = require('underscore'),
     phrases   = require('../phrases'),
     triggers  = require('../triggers');
 
+function favorFirstCDF(idx, length) {
+    switch (idx) {
+        case 0: return 0.7;
+        case 1: return 0.9;
+        default: return (0.1 / (length - 2)) * (idx - 1) + 0.9;
+    }
+}
+
 var srslyGuys = {
 
     guys: function (query, key, callback) {
@@ -50,7 +58,7 @@ var srslyGuys = {
 
             var validResults = body.d.results.filter(predicate);
             if (validResults) {
-               var randomResult = helpers.randElt(validResults);
+               var randomResult = helpers.randElt(validResults, favorFirstCDF);
                callback(randomResult.MediaUrl);
                return;
             }
