@@ -2,7 +2,7 @@ var twilio      = require('twilio'),
     util        = require('util'),
     _           = require('underscore'),
     _s          = require('underscore.string'),
-    debug       = require('debug')('Twilio Phonetext'),
+    debug       = require('debug')('Bender-Twilio Phonetext'),
 
     phrases     = require('../phrases'),
     config      = require('../../../config'),

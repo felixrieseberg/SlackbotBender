@@ -1,5 +1,5 @@
 var _s      = require('underscore.string'),
-    debug   = require('debug')('Helpers');
+    debug   = require('debug')('Bender-Helpers');
 
 var helpers = {
     /**
@@ -79,16 +79,16 @@ var helpers = {
                 var curCDF = cdf(idx, arr.length);
                 if (prob <= curCDF) {
                     chosenIdx = idx;
-                    debug('Chose index '+chosenIdx+' @ prob '+prob);
+                    //debug('Chose index '+chosenIdx+' @ prob '+prob);
                     return arr[chosenIdx];
                 }
             }
             chosenIdx = arr.length-1;
-            debug('Chose last index of array '+chosenIdx);
+            //debug('Chose last index of array '+chosenIdx);
             return arr[chosenIdx];
         } else {
             chosenIdx = Math.floor(Math.random() * arr.length);
-            debug('Chose index '+chosenIdx);
+            //debug('Chose index '+chosenIdx);
             return arr[chosenIdx];
         }
     }

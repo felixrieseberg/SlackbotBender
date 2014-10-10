@@ -2,7 +2,7 @@ var express             = require('express'),
     router              = express.Router(),
     util                = require('util'),
     _s                  = require('underscore.string'),
-    debug               = require('debug')('Botify'),
+    debug               = require('debug')('Bender-Botify'),
 
     helpers             = require('./helpers'),
     triggers            = require('./triggers'),

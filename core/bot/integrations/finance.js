@@ -2,19 +2,20 @@ var _       = require('underscore'),
     _s      = require('underscore.string'),
     util    = require('util'),
     request = require('request'),
-    debug   = require('debug')('Finance'),
+    debug   = require('debug')('Bender-Finance'),
 
     phrases = require('../phrases');
 
 function coalesce() {
     for (var i = 0; i < arguments.length; i += 2) {
-        if (!isNaN(arguments[i])) return (arguments[i] + ' ' + arguments[i+1]);
+        if (!isNaN(arguments[i])) {
+            return (arguments[i] + ' ' + arguments[i+1]);
+        }
     }
     return '-';
 }
 
 var finance = {
-
     getResponse: function (query, callback) {
         var symbol = _s.trim(_s.strRight(query, 'ticker'));
         if (symbol.length > 10 || symbol.match(/\s/)) {
@@ -42,7 +43,7 @@ var finance = {
                 ma50ChangePct = parseFloat(data[5]);
 
             var result = name + ' is at ' + coalesce(bid, 'bid', ask, 'ask');
-                result += ' (' + coalesce(changePct, '%', ma50ChangePct, '% [50-day MA]') + ')';
+                result += ' (' + coalesce(changePct, '% [Day]', ma50ChangePct, '% [50-day MA]') + ')';
 
             if (ma50ChangePct > 10 || changePct > 2) {
                 result += ", " + phrases.say('finance_up');
@@ -52,6 +53,7 @@ var finance = {
                 result += ", " + phrases.say('finance_nomovement');
             }
 
+            debug('Responded: ' + result);
             return callback(result);
         });
     }
