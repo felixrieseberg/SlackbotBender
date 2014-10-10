@@ -23,7 +23,7 @@ var finance = {
             return;
         }
 
-        var url = 'http://finance.yahoo.com/d/quotes.csv?s=' + symbol + '&f=nabc1p2m8';
+        var url = 'http://finance.yahoo.com/d/quotes.csv?s=' + symbol + '&f=nabpc1p2m8';
         request.get(url, function (err, res, body) {
             if (err || res.statusCode !== 200) {
                 debug('Yahoo finance error fetching ' + url + ': ' + err + ', ' + res.statusCode);
@@ -38,11 +38,12 @@ var finance = {
 
             var ask = parseFloat(data[0]),
                 bid = parseFloat(data[1]),
-                change = parseFloat(data[2]),
-                changePct = parseFloat(data[3]),
-                ma50ChangePct = parseFloat(data[4]);
+                pclose = parseFloat(data[2]),
+                change = parseFloat(data[3]),
+                changePct = parseFloat(data[4]),
+                ma50ChangePct = parseFloat(data[5]);
 
-            var result = name + ' is at ' + coalesce(bid, 'bid', ask, 'ask');
+            var result = name + ' is at ' + coalesce(bid, 'bid', ask, 'ask', pclose, 'close');
                 result += ' (' + coalesce(changePct, '% [Day]', ma50ChangePct, '% [50-day MA]') + ')';
 
             if (ma50ChangePct > 10 || changePct > 2) {
