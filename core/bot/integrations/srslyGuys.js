@@ -1,7 +1,7 @@
 var _         = require('underscore'),
     _s        = require('underscore.string'),
     bing      = require('node-bing-api'),
-    debug     = require('debug')('srslyGuys'),
+    debug     = require('debug')('Bender-srslyGuys'),
 
     helpers   = require('../helpers'),
     phrases   = require('../phrases'),

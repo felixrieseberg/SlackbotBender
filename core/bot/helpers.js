@@ -1,5 +1,5 @@
 var _s      = require('underscore.string'),
-    debug   = require('debug')('Helpers');
+    debug   = require('debug')('Bender-Helpers');
 
 var helpers = {
     /**

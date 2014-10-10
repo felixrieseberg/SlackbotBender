@@ -1,6 +1,6 @@
 var util                = require('util'),
     _s                  = require('underscore.string'),
-    debug               = require('debug')('Chatter'),
+    debug               = require('debug')('Bender-Chatter'),
     bluebird            = require('bluebird'),
     request             = bluebird.promisify(require('request')),
 

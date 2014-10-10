@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var debug   = require('debug')('Bender'),
+var debug   = require('debug')('Bender-server'),
     CronJob = require('cron').CronJob,
     app     = require('../app'),
     chatter = require('../core/bot/chatter');

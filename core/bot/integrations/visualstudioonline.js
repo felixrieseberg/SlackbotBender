@@ -1,7 +1,7 @@
 var _           = require('underscore'),
     _s          = require('underscore.string'),
     vsolib      = require('vso-client'),
-    debug       = require('debug')('VisualStudioOnline'),
+    debug       = require('debug')('Bender-VisualStudioOnline'),
     bluebird    = require('bluebird'),
 
     config      = require('../../../config'),

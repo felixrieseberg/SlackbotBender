@@ -2,7 +2,7 @@ var _       = require('underscore'),
     _s      = require('underscore.string'),
     util    = require('util'),
     request = require('request'),
-    debug   = require('debug')('Finance'),
+    debug   = require('debug')('Bender-Finance'),
 
     phrases = require('../phrases');
 

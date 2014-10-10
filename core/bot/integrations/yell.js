@@ -2,7 +2,7 @@ var _       = require('underscore'),
     _s      = require('underscore.string'),
     util    = require('util'),
     figlet  = require('figlet'),
-    debug   = require('debug')('Yell'),
+    debug   = require('debug')('Bender-Yell'),
     helpers = require('../helpers'),
     phrases = require('../phrases'),
     yell;
