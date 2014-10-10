@@ -1,7 +1,8 @@
 var util                = require('util'),
     _s                  = require('underscore.string'),
     debug               = require('debug')('Chatter'),
-    request             = require('request'),
+    bluebird            = require('bluebird'),
+    request             = bluebird.promisify(require('request')),
 
     helpers             = require('./helpers'),
     triggers            = require('./triggers'),
@@ -24,12 +25,14 @@ function respond (text, attachments) {
 
     var targetUri = process.env.randomChannelWebhookUri;
     if (targetUri) {
-        request.post({ 'uri': targetUri, 'json': payload }, function (err, res, body) {
-            if (err || res.statusCode != 200) {
-                var status = res ? res.statusCode : 'unknown';
-                console.log('Error '+err+', '+status+' sending payload: ' + JSON.stringify(payload));
-            }
-        });
+        request({ 'method': 'POST', 'uri': targetUri, 'json': payload })
+            .then(function (body) {
+                debug('Sent '+JSON.stringify(payload)+', received '+JSON.stringify(body));
+            })
+            .catch(function (e) {
+                var status = e.code || 'unknown';
+                console.log('Error '+JSON.stringify(e)+', '+status+' sending payload: ' + JSON.stringify(payload));
+            });
     } else {
         debug('Would send payload: ' + JSON.stringify(payload));
     }

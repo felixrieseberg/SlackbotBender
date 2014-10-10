@@ -1,7 +1,8 @@
 /*jshint -W030 */
 /* This is needed for jshint to be okay with `should.be.ok` */
 
-var should  = require('should'),
+var debug   = require('debug')('Bender-Finance'),
+    should  = require('should'),
     finance = require('../bot/integrations/finance');
 
 describe('Finance', function(){
