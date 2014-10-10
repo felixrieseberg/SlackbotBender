@@ -36,11 +36,11 @@ var finance = {
                 return callback(phrases.say('finance_nosymbol'));
             }
 
-            var ask = parseFloat(data[1]),
-                bid = parseFloat(data[2]),
-                change = parseFloat(data[3]),
-                changePct = parseFloat(data[4]),
-                ma50ChangePct = parseFloat(data[5]);
+            var ask = parseFloat(data[0]),
+                bid = parseFloat(data[1]),
+                change = parseFloat(data[2]),
+                changePct = parseFloat(data[3]),
+                ma50ChangePct = parseFloat(data[4]);
 
             var result = name + ' is at ' + coalesce(bid, 'bid', ask, 'ask');
                 result += ' (' + coalesce(changePct, '% [Day]', ma50ChangePct, '% [50-day MA]') + ')';
