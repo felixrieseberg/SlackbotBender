@@ -15,6 +15,10 @@ function coalesce() {
     return '-';
 }
 
+/**
+ * Reads finance data from Yahoo!  See http://www.jarloo.com/yahoo_finance/ for details.
+ *
+ */
 var finance = {
     getResponse: function (query, callback) {
         var symbol = _s.trim(_s.strRight(query, 'ticker'));
