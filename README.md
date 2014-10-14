@@ -16,6 +16,7 @@ of a string.
 - Yahoo Finance
 - Bender Quotes
 - Help
+- Fortunes
 - Text Messaging (using Twilio)
 - Yelling (repeats text in fancy ASCII art)
 - Timezones (using Wolfram Alpha)

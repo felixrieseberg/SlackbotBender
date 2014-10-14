@@ -11,6 +11,12 @@ var triggers = {
         'ticker'
     ],
 
+    fortune: [
+        '!fortune',
+        'fortune', 
+        'tell me my fortune'
+    ],
+
     hi: [
         'Hi Bender',
         'Hey Bender',
