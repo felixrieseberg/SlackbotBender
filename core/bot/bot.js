@@ -11,6 +11,7 @@ var express             = require('express'),
     cursing             = require('./integrations/cursing'),
     development         = require('./integrations/development'),
     finance             = require('./integrations/finance'),
+    fortune             = require('./integrations/fortune'),
     help                = require('./integrations/help'),
     quotes              = require('./integrations/quotes'),
     phonetext           = require('./integrations/phonetext'),
@@ -61,6 +62,11 @@ function botify (req, res){
     // Finance
     if (helpers.startsWithAny(reqText, triggers.finance)) {
         return finance.getResponse(reqText, respond.bind(this, res));
+    }
+
+    // Fortune
+    if (helpers.startsWithAny(reqText, triggers.fortune)) {
+        return fortune.getResponse(reqText, respond.bind(this, res));
     }
 
     // Help
