@@ -15,6 +15,11 @@ function coalesce() {
     return '-';
 }
 
+/**
+ * Finance integration. Reads finance data from Yahoo!  See http://www.jarloo.com/yahoo_finance/ for details.
+ *
+ * @module finance
+ */
 var finance = {
     getResponse: function (query, callback) {
         var symbol = _s.trim(_s.strRight(query, 'ticker'));
