@@ -20,7 +20,7 @@ var fortune = {
         // preformat_text=yes
         // max_lines=[2 to 999]
 
-        var url = 'http://anduin.eldar.org/cgi-bin/fortune.pl?text_format=yes&preformat_text=yes&any_fortune=yes';
+        var url = 'http://anduin.eldar.org/cgi-bin/fortune.pl?text_format=yes&any_fortune=yes';
         request.get(url, function (err, res, body) {
             if (err || res.statusCode !== 200) {
                 debug('Fortune error fetching ' + url + ': ' + err + ', ' + res.statusCode);
