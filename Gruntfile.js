@@ -16,10 +16,13 @@ module.exports = function(grunt) {
             all: [ '*.js', 'core/**/*.js']
         },
 
-        jsdoc: {
-            all: {
-                src: ['*.js', 'core/**/*.js'],
-                dest: 'doc'
+        jsdoc2md: {
+            indexed: {
+                options: {
+                    index: true
+                },
+                src: ['app.js', 'core/**/*.js'],
+                dest: 'doc/README.md'
             }
         },
 
@@ -58,12 +61,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-simple-mocha');
-    grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks("grunt-jsdoc-to-markdown");
     grunt.loadNpmTasks('grunt-istanbul');
 
     grunt.registerTask('coverage', ['instrument', 'simplemocha:coverage', 'storeCoverage', 'makeReport']);
     grunt.registerTask('test', ['jshint', 'simplemocha:all']);
     grunt.registerTask('build', ['jshint', 'test']);
 
-    grunt.registerTask('default', ['jshint', 'coverage']);
+    grunt.registerTask('default', ['jshint', 'jsdoc2md', 'coverage']);
 };

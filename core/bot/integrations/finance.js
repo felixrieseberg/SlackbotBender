@@ -16,8 +16,9 @@ function coalesce() {
 }
 
 /**
- * Reads finance data from Yahoo!  See http://www.jarloo.com/yahoo_finance/ for details.
+ * Finance integration. Reads finance data from Yahoo!  See http://www.jarloo.com/yahoo_finance/ for details.
  *
+ * @module finance
  */
 var finance = {
     getResponse: function (query, callback) {
