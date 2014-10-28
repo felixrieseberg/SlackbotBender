@@ -7,8 +7,9 @@ var debug   = require('debug')('Bender-Finance'),
 
 describe('Finance', function(){
     describe('#getResponse()', function(){
+        this.timeout(5000);
+
         it('should never show NaN', function(done){
-            this.timeout(5000);
             finance.getResponse('ticker rsh', function(data)
             {
                 data.should.not.match(/NaN/);
@@ -17,7 +18,6 @@ describe('Finance', function(){
         });
 
         it('should tolerate bad input', function(done){
-            this.timeout(5000);
             finance.getResponse('ticker no symbol here', function(data)
             {
                 data.should.match(/not a symbol/);
@@ -26,7 +26,6 @@ describe('Finance', function(){
         });
 
         it('should tolerate non-existent symbols', function(done){
-            this.timeout(5000);
             finance.getResponse('ticker nostock', function(data)
             {
                 data.should.match(/not a symbol/);

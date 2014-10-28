@@ -1,8 +1,9 @@
-var _       = require('underscore'),
-    _s      = require('underscore.string'),
-    util    = require('util'),
-    request = require('request'),
-    debug   = require('debug')('Bender-Finance'),
+var _           = require('underscore'),
+    _s          = require('underscore.string'),
+    util        = require('util'),
+    csvparser   = require('csv-parse'),
+    request     = require('request'),
+    debug       = require('debug')('Bender-Finance'),
 
     phrases = require('../phrases');
 
@@ -41,26 +42,38 @@ var finance = {
                 return callback(phrases.say('finance_nosymbol'));
             }
 
-            var ask = parseFloat(data[0]),
-                bid = parseFloat(data[1]),
-                pclose = parseFloat(data[2]),
-                change = parseFloat(data[3]),
-                changePct = parseFloat(data[4]),
-                ma50ChangePct = parseFloat(data[5]);
+            csvparser(body.split('\r\n')[0], function(err, output) {
 
-            var result = name + ' is at ' + coalesce(bid, 'bid', ask, 'ask', pclose, 'close');
-                result += ' (' + coalesce(changePct, '% [Day]', ma50ChangePct, '% [50-day MA]') + ')';
+                if (err) {
+                    debug('Error parsing CSV: ' + err);
+                    return callback(phrases.say('errors'));
+                }
 
-            if (ma50ChangePct > 10 || changePct > 2) {
-                result += ", " + phrases.say('finance_up');
-            } else if (ma50ChangePct < -10 || changePct < -2) {
-                result += ", " + phrases.say('finance_down');
-            } else {
-                result += ", " + phrases.say('finance_nomovement');
-            }
+                var data = output[0],
+                    name = data.shift();
 
-            debug('Responded: ' + result);
-            return callback(result);
+                var ask = parseFloat(data[0]),
+                    bid = parseFloat(data[1]),
+                    pclose = parseFloat(data[2]),
+                    change = parseFloat(data[3]),
+                    changePct = parseFloat(data[4]),
+                    ma50ChangePct = parseFloat(data[5]);
+
+                var result = name + ' is at ' + coalesce(bid, 'bid', ask, 'ask', pclose, 'close');
+                    result += ' (' + coalesce(changePct, '% [Day]', ma50ChangePct, '% [50-day MA]') + ')';
+
+                if (ma50ChangePct > 10 || changePct > 2) {
+                    result += ", " + phrases.say('finance_up');
+                } else if (ma50ChangePct < -10 || changePct < -2) {
+                    result += ", " + phrases.say('finance_down');
+                } else {
+                    result += ", " + phrases.say('finance_nomovement');
+                }
+
+                debug('Responded: ' + result);
+                return callback(result);
+            });
+
         });
     }
 
