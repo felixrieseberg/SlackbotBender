@@ -23,6 +23,16 @@ of a string.
 - Memes (experimental)
 - Wolfram Alpha (experimental)
 
+## Local Development
+```bash
+npm install
+node bin/www
+    
+# call server using Postman/Fiddler
+# example query:
+# [POST] http://localhost:3000?text=bender: ticker tsla
+```
+
 ## License
 The MIT License (MIT)
 
