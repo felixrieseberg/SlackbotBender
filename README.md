@@ -26,7 +26,7 @@ of a string.
 ## Local Development
 ```bash
 npm install
-node bin\www
+node bin/www
     
 # call server using Postman/Fiddler
 # example query:
