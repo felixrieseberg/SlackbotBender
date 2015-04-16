@@ -3,13 +3,10 @@ var helpers = require('./helpers');
 var phrases = {
 
     curses: [
-        'Come on, {0}, you big, mostly empty wuss! Give me all the juice you got!',
-        'Hey {0}, wanna kill all humans?',
-        '{0}, Bite my shiny metal ass!',
-        'Hey, I got a busted ass here {0}, I don\'t see anyone kissing it!',
-        '{0}?  Because he\'s a loser, that\'s why. He\'s the lobster equivalent of Fry.',
-        'Stupid anti-pimping laws. Well, pay the man, {0}!'
-    ],
+        'Emptiness dude, it\'s a real thing. Except it\'s not a real thing.',
+        'Think about it, you can\'t _not_ be Zen; it\'s impossible.'
+
+],
 
     // Quotes
     quotes: [
@@ -61,19 +58,15 @@ var phrases = {
     ],
 
     finance_nosymbol: [
-        'That\'s not a symbol, ass-hat.'
+        'That\'s not a symbol.'
     ],
 
     // Various
     noresult: [
-        'Have you ever thought about turning off the TV, sitting down with your children, and hitting them?',
-        'Hey baby, Wanna kill all humans?',
-        'You can\'t even search for things correctly, idiot.'
+        'No results found, Sir.'
     ],
 
     errors: [
-        'Sorry, something went wrong. Somehow. I don\'t know. I\'m probably drunk.',
-        'Well, I\'m on strike. And it has nothing to do with me not getting results here.',
         'Something\'s broken. Life can be hilariously cruel.'
     ],
 
@@ -82,11 +75,11 @@ var phrases = {
     ],
 
     wolfram: [
-        'I asked Wolfram Alpha and got this back: '
+        'I asked Wolfram and got this back: '
     ],
 
     missingKey: [
-        'No data without the key, meatbag.'
+        'No data without the key.'
     ],
 
     say: function (type) {

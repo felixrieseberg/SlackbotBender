@@ -34,8 +34,9 @@ var triggers = {
     ],
 
     curses: [
-        '!curse',
-        'curse'
+        '!ceeg',
+        'ceeg',
+        '!cj'
     ],
 
     quotes: [

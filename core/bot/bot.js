@@ -33,7 +33,7 @@ function respond (res, text, attachments) {
 
     res.json({
         text: text,
-        username: 'Bender',
+        username: 'C3PO',
         attachments: attachments
     });
 }
@@ -124,7 +124,7 @@ function botify (req, res){
         return yell.getResponse(reqText, respond.bind(this, res));
     }
 
-    return respond(res, 'Yo @' +req.body.user_name + ', I have no idea what you\'re talking about.');
+    return respond(res, 'I\'m sorry,' +req.body.user_name + ', I have no idea what you\'re talking about.');
 
 }
 
