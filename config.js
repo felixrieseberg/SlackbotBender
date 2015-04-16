@@ -2,7 +2,7 @@ var config = {
 
     slacktoken: process.env.slacktoken,
     twilioNumber: process.env.twilioNumber || '+123456789',
-    twilioAccount: process.env.twilioAccount || 'YOURACCOUNT',
+    twilioAccount: process.env.twilioAccount || 'VAJ5LG-LAPQPPVVQL',
     twilioToken: process.env.twilioToken || 'YOURTOKEN',
     wolframappid: process.env.wolframappid || '',
     vsoUser: process.env.vsoUser || 'feriese@microsoft.com',
