@@ -33,7 +33,7 @@ function respond (res, text, attachments) {
 
     res.json({
         text: text,
-        username: 'bender',
+        username: 'bender/',
         attachments: attachments
     });
 }
