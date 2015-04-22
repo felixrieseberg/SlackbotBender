@@ -3,8 +3,12 @@ var helpers = require('./helpers');
 var phrases = {
 
     curses: [
-        'Emptiness dude, it\'s a real thing. Except it\'s not a real thing.',
-        'Think about it, you can\'t _not_ be Zen; it\'s impossible.'
+        'Come on, {0}, you big, mostly empty wuss! Give me all the juice you got!',
+        'Hey {0}, wanna kill all humans?',
+        '{0}, Bite my shiny metal ass!',
+        'Hey, I got a busted ass here {0}, I don\'t see anyone kissing it!',
+        '{0}?  Because he\'s a loser, that\'s why. He\'s the lobster equivalent of Fry.',
+        'Stupid anti-pimping laws. Well, pay the man, {0}!'
 
 ],
 
