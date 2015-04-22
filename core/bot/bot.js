@@ -41,7 +41,7 @@ function respond (res, text, attachments) {
 function botify (req, res){
 
     var reqText = req.query.text || req.body.text || null;
-        reqText = reqText ? _s.strRight(_s.clean(reqText.toLowerCase()), 'bender: ') : reqText;
+        reqText = reqText ? _s.strRight(_s.clean(reqText.toLowerCase()), 'ghost ') : reqText;
 
     debug('Request received: ' + reqText);
 
