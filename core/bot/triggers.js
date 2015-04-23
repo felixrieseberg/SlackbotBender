@@ -18,9 +18,9 @@ var triggers = {
     ],
 
     hi: [
-        'Hi Bender',
-        'Hey Bender',
-        'Yo Bender,'
+        'Hi Ghost',
+        'Hey Ghost',
+        'Yo Ghost,'
     ],
 
     help: [
@@ -34,8 +34,8 @@ var triggers = {
     ],
 
     curses: [
-        '!curse',
-        'curse'
+        'curses',
+        '!curse'
     ],
 
     quotes: [
