@@ -9,7 +9,9 @@ var phrases = {
     // Quotes
     quotes: [
         'We\'ve woken The Hive!!!',
-        'That Wizard came from the moon.'
+        'That Wizard came from the moon.',
+        'That machine, it\'s still active. Let me analyze it.',
+        'This place is just one big machine...'
     ],
 
     // Finance

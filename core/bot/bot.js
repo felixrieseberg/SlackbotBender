@@ -41,12 +41,12 @@ function respond (res, text, attachments) {
 function botify (req, res){
 
     var reqText = req.query.text || req.body.text || null;
-        reqText = reqText ? _s.strRight(_s.clean(reqText.toLowerCase()), 'ghost '|| 'dinklebot ') : reqText;
+        reqText = reqText ? _s.strRight(_s.clean(reqText.toLowerCase()), 'ghost ') : reqText;
 
     debug('Request received: ' + reqText);
 
     if (!reqText) {
-        return respond(res, 'Yo, you didn\'t even ask for anything. Gimme a command!');
+        return respond(res, 'You didn\'t ask for anything.');
     }
 
     // Cursing
@@ -124,7 +124,7 @@ function botify (req, res){
         return yell.getResponse(reqText, respond.bind(this, res));
     }
 
-    return respond(res, 'I\'m sorry,' +req.body.user_name + ', I have no idea what you\'re talking about.');
+    return respond(res, 'I\'m sorry, ' +req.body.user_name + ', I have no idea what you\'re talking about.');
 
 }
 
